@@ -1,6 +1,7 @@
 package codecrafters.lancini.myapp;
 
 
+import codecrafters.lancini.gui.EvenementListForm;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
@@ -51,9 +52,10 @@ public class MyApplication {
             current.show();
             return;
         }
-        Form hi = new Form("Hi World", BoxLayout.y());
-        hi.add(new Label("Hi World"));
-        hi.show();
+      new EvenementListForm().showEvenementList();
+        //new EvenementAddForm().showAdd();
+        //new MapForm();
+       // new homeCommunityForm().showCommunity();
     }
 
     public void stop() {
