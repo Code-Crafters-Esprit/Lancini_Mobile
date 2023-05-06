@@ -47,13 +47,7 @@ public class MyApplication {
     }
     
     public void start() {
-        if(current != null){
-            current.show();
-            return;
-        }
-        Form hi = new Form("Hi World", BoxLayout.y());
-        hi.add(new Label("Hi World"));
-        hi.show();
+         new HomeForm().show();
     }
 
     public void stop() {

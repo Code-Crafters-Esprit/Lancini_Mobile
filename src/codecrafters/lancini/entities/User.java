@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package codecrafters.lancini.entities;
 
 /**
  *
- * @author LENOVO
+ * @author Youssef-Ayed
  */
-
 public class User {
     private int idUser; 
     private String Nom; 
@@ -19,9 +13,34 @@ public class User {
     private String role; 
     private String bio; 
     private String photoPath;
+    private String numTel;
     
     public User() {
     }
+
+    public User(String Nom, String Prenom, String email, String motDePasse, String role, String bio, String photoPath) {
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.role = role;
+        this.bio = bio;
+        this.photoPath = photoPath;
+    }
+
+    public User(int idUser, String Nom, String Prenom, String email, String motDePasse, String role, String bio, String photoPath, String numTel) {
+        this.idUser = idUser;
+        this.Nom = Nom;
+        this.Prenom = Prenom;
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.role = role;
+        this.bio = bio;
+        this.photoPath = photoPath;
+        this.numTel = numTel;
+    }
+    
+    
     
     public User(int idUser, String Nom, String Prenom, String email, String motDePasse, String role, String bio, String photoPath) {
         this.idUser = idUser;
@@ -34,8 +53,12 @@ public class User {
         this.photoPath = photoPath;
     }
 
-    User(Integer idUser) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    public User(String string, String string0, String string1, String string2, String string3, String string4, String string5) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+
+    public User(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getIdUser() {
@@ -51,6 +74,11 @@ public class User {
     }
 
     public void setNom(String Nom) {
+        this.Nom = Nom;
+    }
+
+    public User(int idUser, String Nom) {
+        this.idUser = idUser;
         this.Nom = Nom;
     }
 
@@ -101,6 +129,16 @@ public class User {
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
     }
+
+    public String getNumTel() {
+        return numTel;
+    }
+
+    public void setNumTel(String numTel) {
+        this.numTel = numTel;
+    }
+    
+    
 
     @Override
     public String toString() {
