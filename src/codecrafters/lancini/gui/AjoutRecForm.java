@@ -10,6 +10,7 @@ import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.ComboBox;
 import com.codename1.ui.Command;
+import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Form;
 import com.codename1.ui.Label;
@@ -23,6 +24,12 @@ import com.codename1.ui.layouts.FlowLayout;
 import com.codename1.ui.validation.LengthConstraint;
 import com.codename1.ui.validation.RegexConstraint;
 import com.codename1.ui.validation.Validator;
+import com.codename1.ui.Button;
+import com.codename1.ui.Command;
+import com.codename1.ui.Dialog;
+import com.codename1.ui.Form;
+import com.codename1.ui.events.ActionEvent;
+import com.codename1.ui.events.ActionListener;
 
 /**
  *
@@ -30,87 +37,82 @@ import com.codename1.ui.validation.Validator;
  */
 public class AjoutRecForm extends Form {
 
-    private TextField nomField, prenomField, emailField, descriptionField, telField;
-    private ComboBox<String> sujetComboBox, etatComboBox;
-
     public AjoutRecForm() {
         super("Poser une réclamation", BoxLayout.y());
 
-        // Nom
-        Label nomLabel = new Label("Nom :");
-        nomField = new TextField();
-        addField(nomLabel, nomField);
-
-        // Prénom
-        Label prenomLabel = new Label("Prénom :");
-        prenomField = new TextField();
-        addField(prenomLabel, prenomField);
-
-        // Email
-        Label emailLabel = new Label("Email :");
-        emailField = new TextField();
-        emailField.setConstraint(TextField.EMAILADDR);
-        addField(emailLabel, emailField);
-
-        // Sujet de la réclamation
-        Label sujetLabel = new Label("Sujet de la réclamation :");
-        sujetComboBox = new ComboBox<>(new String[]{"Choisissez un sujet...", "Sujet 1", "Sujet 2", "Sujet 3"});
-        addField(sujetLabel, sujetComboBox);
-
-        // Description
-        Label descriptionLabel = new Label("Description :");
-        descriptionField = new TextField();
-        addField(descriptionLabel, descriptionField);
-
-        // Téléphone
-        Label telLabel = new Label("Téléphone :");
-        telField = new TextField();
-        telField.setConstraint(TextField.PHONENUMBER);
-        addField(telLabel, telField);
-
-        // État de la réclamation
-        Label etatLabel = new Label("État de la réclamation :");
-        etatComboBox = new ComboBox<>(new String[]{"En attente", "En cours de traitement", "Terminé"});
-        addField(etatLabel, etatComboBox);
-
-        // Bouton pour ajouter la réclamation
-        Button ajouterButton = new Button("Ajouter la réclamation");
-        ajouterButton.addActionListener(new ActionListener() {
+        // Ajouter un bouton "Retour"
+        Button btnRetour = new Button("Retour");
+        btnRetour.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent evt) {
-                // Ajouter la réclamation ici
+                // Retourner à la page précédente
+                showBack();
             }
         });
-        addComponent(ajouterButton);
+        addComponent(btnRetour);
 
-        // Bouton pour retourner à la page d'accueil
-        Button retourButton = new Button("Retour");
-        retourButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                HomePageForm homePageForm = new HomePageForm();
-                homePageForm.showBack();
-            }
-        });
-        addComponent(retourButton);
+        // Ajouter les champs pour la réclamation
+        TextField tfNom = new TextField("", "Nom");
+        addComponent(tfNom);
 
-        // Bouton pour afficher les détails de la réclamation
-        Button detailsButton = new Button("Afficher les détails");
-        detailsButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                AfficherRecForm afficherRecForm = new AfficherRecForm();
-                afficherRecForm.show();
-            }
-        });
-        addComponent(detailsButton);
+        TextField tfPrenom = new TextField("", "Prénom");
+        addComponent(tfPrenom);
+
+        TextField tfDescription = new TextField("", "Description");
+        addComponent(tfDescription);
+
+        TextField tfSujet = new TextField("", "Sujet");
+        addComponent(tfSujet);
+
+        TextField tfEmail = new TextField("", "E-mail");
+        addComponent(tfEmail);
+
+        TextField tfTel = new TextField("", "Téléphone");
+        addComponent(tfTel);
+
+        TextField tfEtat = new TextField("", "État");
+        addComponent(tfEtat);
+
+   // Ajouter un bouton pour soumettre la réclamation
+Button btnSubmit = new Button("Soumettre");
+btnSubmit.addActionListener(new ActionListener() {
+    public void actionPerformed(ActionEvent evt) {
+        // Récupérer les valeurs saisies
+        String nom = tfNom.getText();
+        String prenom = tfPrenom.getText();
+        String description = tfDescription.getText();
+        String sujet = tfSujet.getText();
+        String email = tfEmail.getText();
+        String tel = tfTel.getText();
+        String etat = tfEtat.getText();
+
+        // Effectuer les contrôles de saisie
+        if (nom.length() == 0 || prenom.length() == 0 || description.length() == 0 || sujet.length() == 0 || email.length() == 0 || tel.length() == 0 || etat.length() == 0) {
+            Dialog.show("Erreur", "Veuillez remplir tous les champs.", "OK", null);
+        } else if (!isValidEmail(email)) {
+            Dialog.show("Erreur", "Veuillez saisir une adresse email valide.", "OK", null);
+        } else if (!isValidTel(tel)) {
+            Dialog.show("Erreur", "Veuillez saisir un numéro de téléphone valide.", "OK", null);
+        } else {
+            // Envoyer la réclamation ici ...
+
+            // Afficher un message de confirmation
+            Dialog.show("Confirmation", "Bonjour, votre réclamation a été déposée sur LANCINI.", "OK", null);
+
+            // Retourner à la page d'accueil
+            showBack();
+        }
     }
 
-    private void addField(Label label, TextField textField) {
-        Container container = new Container(new BorderLayout());
-        container.add(BorderLayout.WEST, label);
-        container.add(BorderLayout.CENTER, textField);
-        addComponent(container);
-    }
+            private boolean isValidEmail(String email) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
 
-    private void addField(Label sujetLabel, ComboBox<String> sujetComboBox) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            private boolean isValidTel(String tel) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+addComponent(btnSubmit);
+
+
     }
 }
