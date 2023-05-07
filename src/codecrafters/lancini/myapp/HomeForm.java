@@ -24,11 +24,14 @@ import com.codename1.ui.layouts.BoxLayout;
         
         add(new Label("Choose an option"));
        
-        Button btnListTasks = new Button("List Products");
+        Button btnListProducts = new Button("List Products");
+        Button btnAddProduct = new Button("Add Producta");
         
-      
-        btnListTasks.addActionListener(e-> new AfficherProduitForm(this).show());
-        add(btnListTasks);
+        btnAddProduct.addActionListener(e-> new AjouterProduitForm(this).show());
+        
+        btnListProducts.addActionListener(e-> new AfficherProduitForm(this).show());
+        add(btnAddProduct);
+         add(btnListProducts);
         
         
     }

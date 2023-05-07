@@ -53,6 +53,7 @@ public class ServiceProduit {
         
         String url = MaConnection.BASE_URL+"/produit/AllProduits";
         req.setUrl(url);
+        req.setPost(false);
         
         req.addResponseListener(new ActionListener<NetworkEvent>() {
             @Override
@@ -93,23 +94,9 @@ if (startIndex >= 0 && endIndex >= 0 && startIndex < endIndex) {
     }
 } else {
     
-    // Handle the case where the substring indices are invalid
-    // Display an error message or use a default value for the date
     p.setDate(new Date());
 }
 
-//             String dateConverter = obj.get("date").toString().substring(obj.get("date").toString().indexOf("timestamp") + 10, obj.get("date").toString().lastIndexOf("}"));
-//long timestamp = Long.parseLong(dateConverter);
-//Date date = new Date(timestamp * 1000);
-//fe.setDate(date);
-
-
-//             String dateConverter = obj.get("date").toString().substring(obj.get("date").toString().indexOf("timestamp") + 10, obj.get("date").toString().lastIndexOf("}"));
-//long timestamp = Long.parseLong(dateConverter);
-//Date date = new Date(timestamp * 1000);
-//fe.setDate(date);
-
-                        //insert data into ArrayList result
                         result.add(p);
                        
                     
@@ -123,7 +110,7 @@ if (startIndex >= 0 && endIndex >= 0 && startIndex < endIndex) {
             }
         });
         
-      NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
+      NetworkManager.getInstance().addToQueueAndWait(req);
 
         return result;
         
@@ -132,7 +119,6 @@ if (startIndex >= 0 && endIndex >= 0 && startIndex < endIndex) {
     
     
     
-//    Detail Reclamation bensba l detail n5alihoa lel5r ba3d delete+update
     
    public Produit DetailProduit(int idProduit, Produit p) {
     String url = MaConnection.BASE_URL + "/produit/Produits?" + idProduit;
@@ -162,5 +148,58 @@ if (startIndex >= 0 && endIndex >= 0 && startIndex < endIndex) {
     return p;
 }
 
+public boolean addProduit(Produit p) {
 
+ 
+        String url = MaConnection.BASE_URL + "/produit/addProduitJSON/new?categorie=" + p.getCategorie() + "&nom=" + p.getNom() + "&description=" + p.getDescription() + "&image=" + p.getImage() + "&prix=" + p.getPrix() + "&date=" + p.getDate();
+     
+
+        req.setUrl(url);
+        req.setPost(false);
+        
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200; //Code HTTP 200 OK
+                req.removeResponseListener(this);
+            }
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
+ public boolean deleteProduit(int idProduit ) {
+        String url = MaConnection.BASE_URL +"/produit/deleteProduitJSON/"+idProduit;
+        
+        req.setUrl(url);
+        req.setPost(false);
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                    
+                    req.removeResponseCodeListener(this);
+            }
+        });
+        
+        
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return  resultOK;
+    }
+    
+    //Update 
+    public boolean updateProduit(Produit p) {
+        String url = MaConnection.BASE_URL +"/produit/updateProduitJSON?idProduit="+p.getIdProduit()+"&categorie=" + p.getCategorie() + "&nom=" + p.getNom() + "&description=" + p.getDescription() + "&image=" + p.getImage() + "&prix=" + p.getPrix() + "&date=" + p.getDate();
+        req.setUrl(url);
+        
+        req.addResponseListener(new ActionListener<NetworkEvent>() {
+            @Override
+            public void actionPerformed(NetworkEvent evt) {
+                resultOK = req.getResponseCode() == 200 ;  // Code response Http 200 ok
+                req.removeResponseListener(this);
+            }
+        });
+        
+    NetworkManager.getInstance().addToQueueAndWait(req);//execution ta3 request sinon yet3ada chy dima nal9awha
+    return resultOK;
+        
+    }
 }
