@@ -13,17 +13,17 @@ import com.codename1.ui.layouts.BoxLayout;
  *
  * @author ezzar
  */
-public class AjoutAviForm extends Form {
+public class ListAviForm extends Form {
     
-     public AjoutAviForm(Form previous) {
-    super("Ajouter vos avis", BoxLayout.y());
+      public ListAviForm(Form previous) {
+    super("Vos avis", BoxLayout.y());
     
               getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK,
                 ev -> {previous.showBack();} );
          
          
        
-    } 
+    }
     
     
 }

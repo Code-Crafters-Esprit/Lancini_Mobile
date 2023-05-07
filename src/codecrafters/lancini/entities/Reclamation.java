@@ -108,6 +108,14 @@ public class Reclamation {
     public String toString() {
         return "Reclamation{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ",description=" + description + ",sujetdereclamations=" + sujetdereclamations + ",email=" + email + ",tel=" + tel + ",etat=" + etat + '}';
     }
+
+    public String getSujet() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void setSujet(String sujet) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
    
    
 

@@ -5,6 +5,9 @@
  */
 package codecrafters.lancini.gui;
 
+import codecrafters.lancini.entities.Reclamation;
+import codecrafters.lancini.myapp.MyApplication;
+import codecrafters.lancini.service.ServiceRec;
 import com.codename1.ui.Form;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
@@ -27,6 +30,7 @@ import com.codename1.ui.validation.Validator;
 import com.codename1.ui.Button;
 import com.codename1.ui.Command;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
@@ -36,83 +40,74 @@ import com.codename1.ui.events.ActionListener;
  * @author ezzar
  */
 public class AjoutRecForm extends Form {
+   
+    public AjoutRecForm(Form previous) {
+        super("Ajouter une réclamation");
+        
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, ev -> {
+            previous.showBack();
+        });
+       
+        // Create text fields for the réclamation information
+        TextField nomField = new TextField("", "Nom");
+        TextField prenomField = new TextField("", "Prénom");
+        TextField descriptionField = new TextField("", "Description");
+        TextField sujetField = new TextField("", "Sujet");
+        TextField emailField = new TextField("", "Email");
+        TextField telField = new TextField("", "Téléphone");
+        TextField etatField = new TextField("", "Etat");
 
-    public AjoutRecForm() {
-        super("Poser une réclamation", BoxLayout.y());
+        // Create a button to submit the réclamation
+        Button submitBtn = new Button("Soumettre");
+        submitBtn.addActionListener(e -> {
+            // Validate the entered values
+            try {
+                String nom = nomField.getText().trim();
+                String prenom = prenomField.getText().trim();
+                String description = descriptionField.getText().trim();
+                String sujet = sujetField.getText().trim();
+                String email = emailField.getText().trim();
+                String tel = telField.getText().trim();
+                String etat = etatField.getText().trim();
 
-        // Ajouter un bouton "Retour"
-        Button btnRetour = new Button("Retour");
-        btnRetour.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                // Retourner à la page précédente
-                showBack();
+                // Check that the entered values are valid
+                if (nom.isEmpty() || prenom.isEmpty() || description.isEmpty() || sujet.isEmpty() || email.isEmpty() || tel.isEmpty() || etat.isEmpty()) {
+                    Dialog.show("Erreur", "Veuillez saisir des valeurs valides pour tous les champs", "OK", null);
+                    return;
+                }
+
+                // Create a new réclamation with the entered information
+                Reclamation rec = new Reclamation();
+                rec.setNom(nom);
+                rec.setPrenom(prenom);
+                rec.setDescription(description);
+                rec.setSujet(sujet);
+                rec.setEmail(email);
+                rec.setTel(tel);
+                rec.setEtat(etat);
+               
+               ServiceRec.getInstance().addReclamation(rec);
+
+                // Display a confirmation message
+                Dialog.show("Confirmation", "Bonjour, votre réclamation a été déposée sur LANCINI.", "OK", null);
+
+                // Return to the home page
+                previous.showBack();
+            } catch (NumberFormatException ex) {
+                // Handle the case where the entered values are not valid numbers
+                Dialog.show("Erreur", "Veuillez saisir des entrées valides", "OK", null);
             }
         });
-        addComponent(btnRetour);
+       
+        // Add the text fields to the form
+        add(nomField);
+        add(prenomField);
+        add(descriptionField);
+        add(sujetField);
+        add(emailField);
+        add(telField);
+        add(etatField);
 
-        // Ajouter les champs pour la réclamation
-        TextField tfNom = new TextField("", "Nom");
-        addComponent(tfNom);
-
-        TextField tfPrenom = new TextField("", "Prénom");
-        addComponent(tfPrenom);
-
-        TextField tfDescription = new TextField("", "Description");
-        addComponent(tfDescription);
-
-        TextField tfSujet = new TextField("", "Sujet");
-        addComponent(tfSujet);
-
-        TextField tfEmail = new TextField("", "E-mail");
-        addComponent(tfEmail);
-
-        TextField tfTel = new TextField("", "Téléphone");
-        addComponent(tfTel);
-
-        TextField tfEtat = new TextField("", "État");
-        addComponent(tfEtat);
-
-   // Ajouter un bouton pour soumettre la réclamation
-Button btnSubmit = new Button("Soumettre");
-btnSubmit.addActionListener(new ActionListener() {
-    public void actionPerformed(ActionEvent evt) {
-        // Récupérer les valeurs saisies
-        String nom = tfNom.getText();
-        String prenom = tfPrenom.getText();
-        String description = tfDescription.getText();
-        String sujet = tfSujet.getText();
-        String email = tfEmail.getText();
-        String tel = tfTel.getText();
-        String etat = tfEtat.getText();
-
-        // Effectuer les contrôles de saisie
-        if (nom.length() == 0 || prenom.length() == 0 || description.length() == 0 || sujet.length() == 0 || email.length() == 0 || tel.length() == 0 || etat.length() == 0) {
-            Dialog.show("Erreur", "Veuillez remplir tous les champs.", "OK", null);
-        } else if (!isValidEmail(email)) {
-            Dialog.show("Erreur", "Veuillez saisir une adresse email valide.", "OK", null);
-        } else if (!isValidTel(tel)) {
-            Dialog.show("Erreur", "Veuillez saisir un numéro de téléphone valide.", "OK", null);
-        } else {
-            // Envoyer la réclamation ici ...
-
-            // Afficher un message de confirmation
-            Dialog.show("Confirmation", "Bonjour, votre réclamation a été déposée sur LANCINI.", "OK", null);
-
-            // Retourner à la page d'accueil
-            showBack();
-        }
-    }
-
-            private boolean isValidEmail(String email) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-
-            private boolean isValidTel(String tel) {
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            }
-        });
-addComponent(btnSubmit);
-
-
+        add(submitBtn);
     }
 }

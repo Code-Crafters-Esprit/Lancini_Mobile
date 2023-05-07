@@ -53,9 +53,8 @@ public class MyApplication {
     public void start() {
        HomePageForm homePageForm = new HomePageForm();
         homePageForm.show();
-       // HomePageForm homePageForm = new HomePageForm();
-        //homePageForm.show();
-   UIBuilder.registerCustomComponent("ImageViewer",ImageViewer.class);
+     
+        UIBuilder.registerCustomComponent("ImageViewer",ImageViewer.class);
         Form f1;
         UIBuilder uib = new UIBuilder();
         Container cnt = uib.createContainer(theme,"GUI 1");
