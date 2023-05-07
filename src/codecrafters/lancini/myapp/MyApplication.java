@@ -1,6 +1,8 @@
 package codecrafters.lancini.myapp;
 
 
+import codecrafters.lancini.gui.CvAddForm;
+import codecrafters.lancini.gui.CvListForm;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
@@ -46,14 +48,18 @@ public class MyApplication {
         });        
     }
     
-    public void start() {
+ public void start() {
         if(current != null){
             current.show();
             return;
         }
-        Form hi = new Form("Hi World", BoxLayout.y());
-        hi.add(new Label("Hi World"));
-        hi.show();
+      CvListForm cvf = new CvListForm();
+      cvf.showEvenementList();
+     
+       //CvAddForm cvf = new CvAddForm();
+              //cvf.showAdd();
+        
+      
     }
 
     public void stop() {
