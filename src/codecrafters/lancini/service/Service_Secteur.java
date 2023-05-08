@@ -120,6 +120,7 @@ public boolean deleteSecteur(int idSecteur) {
         
         String url = MaConnection.BASE_URL + "addSecteurM?nom=" + nom + "&description=" + descr + "&date_creation=" + date; 
         req.setUrl(url);
+        req.setPost(true);
         System.out.println(url);
         System.out.println(req);
 
