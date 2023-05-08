@@ -2,6 +2,9 @@ package codecrafters.lancini.myapp;
 
 
 import codecrafters.lancini.gui.HomeInterface;
+import codecrafters.lancini.gui.CommunityHome;
+import codecrafters.lancini.gui.EvenementListForm;
+import codecrafters.lancini.gui.PublicationListForm;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
