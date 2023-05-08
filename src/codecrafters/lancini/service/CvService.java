@@ -10,6 +10,7 @@ import codecrafters.lancini.tools.MaConnection;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
+import com.codename1.io.FileSystemStorage;
 import com.codename1.io.JSONParser;
 import com.codename1.io.NetworkEvent;
 import com.codename1.io.NetworkManager;
@@ -23,11 +24,13 @@ import java.util.List;
 import java.util.Map;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
+import com.codename1.ui.Display;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BorderLayout;
 import com.google.zxing.qrcode.encoder.QRCode;
+import java.io.OutputStream;
 
 /**
  *
@@ -173,6 +176,36 @@ public class CvService {
         return resultOK;
 
     }
+    
+    
+    public boolean pdf(Cv cv) {
+    String url = MaConnection.BASE_URL + "cv/printcvmobile/" +cv.getIdCv();
+    ConnectionRequest req = new ConnectionRequest();
+    req.setUrl(url);
+    req.setHttpMethod("GET");
+    System.out.println(url);
+    req.addResponseListener(new ActionListener<NetworkEvent>() {
+        @Override
+        public void actionPerformed(NetworkEvent evt) {
+            byte[] data = (byte[]) req.getResponseData();
+            try {
+                String filePath = FileSystemStorage.getInstance().getAppHomePath() + "cv.pdf";
+OutputStream os = FileSystemStorage.getInstance().openOutputStream(filePath);
+
+                os.write(data);
+                os.close();
+                // Display the PDF file using the default PDF viewer
+                Display.getInstance().execute(filePath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            resultOK = req.getResponseCode() == 200; 
+            req.removeResponseListener(this);
+        }
+    });
+    NetworkManager.getInstance().addToQueueAndWait(req);
+    return resultOK;
+}
 
     
 }

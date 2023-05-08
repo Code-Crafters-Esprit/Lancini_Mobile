@@ -95,7 +95,12 @@ public class CvListForm extends Form{
 
                 cvContainer.removeComponent(cvRow);
             });
-            
+            Button pdfBtn = new Button("PDF");
+            pdfBtn.addActionListener(a -> {
+                CvService.getInstance().pdf(cv);
+
+                cvContainer.removeComponent(cvRow);
+            });
            
 
 
@@ -115,6 +120,7 @@ public class CvListForm extends Form{
             
             labelsContainer.add(deleteBtn);
             labelsContainer.add(editBtn);
+            labelsContainer.add(pdfBtn);
             
             cvRow.add(BorderLayout.CENTER, labelsContainer);
 
