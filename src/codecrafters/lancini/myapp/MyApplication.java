@@ -1,7 +1,9 @@
 package codecrafters.lancini.myapp;
 
 
+import codecrafters.lancini.gui.CommunityHome;
 import codecrafters.lancini.gui.EvenementListForm;
+import codecrafters.lancini.gui.PublicationListForm;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
@@ -52,10 +54,11 @@ public class MyApplication {
             current.show();
             return;
         }
-      new EvenementListForm().showEvenementList();
+       //new PublicationListForm().showPublicationList();
+       // new EvenementListForm().showEvenementList();
         //new EvenementAddForm().showAdd();
         //new MapForm();
-       // new homeCommunityForm().showCommunity();
+         new CommunityHome().showCommunityHome();
     }
 
     public void stop() {

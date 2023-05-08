@@ -25,19 +25,23 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Style;
 
+
 import java.util.ArrayList;
 
 public class EvenementListForm extends Form {
 
     private ArrayList<Evenement> Evenements;
 
-    public EvenementListForm() {
+    public EvenementListForm(Form previous) {
         super("Lancini Events");
 
         getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_ADD,
                 e -> {
                     new EvenementAddForm(this).show();
                 });
+        
+         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK,
+                ev -> {previous.showBack();} );
         
 
         //getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_ADD,
@@ -84,8 +88,8 @@ public class EvenementListForm extends Form {
             Label dateLabel = new Label("Date: " + e.getDateEvent());
             dateLabel.setUIID("dateLabel");
 
-            Label proprietaireLabel = new Label("Proprietaire: " + e.getProprietaire());
-            proprietaireLabel.setUIID("proprietaireLabel");
+//            Label proprietaireLabel = new Label("Proprietaire: " + e.getProprietaire());
+//            proprietaireLabel.setUIID("proprietaireLabel");
 
             // Create buttons to reserve, edit, and delete the event
             //Button reserveBtn = new Button("Add");
@@ -111,7 +115,7 @@ public class EvenementListForm extends Form {
             labelsContainer.add(lieuLabel);
             labelsContainer.add(horaireLabel);
             labelsContainer.add(dateLabel);
-            labelsContainer.add(proprietaireLabel);
+//            labelsContainer.add(proprietaireLabel);
             labelsContainer.add(deleteBtn);
 
             evenementRow.add(BorderLayout.CENTER, labelsContainer);
@@ -146,7 +150,7 @@ public class EvenementListForm extends Form {
     }
 
     public void showEvenementList() {
-        EvenementListForm form = new EvenementListForm();
+        EvenementListForm form = new EvenementListForm(this);
         form.show();
     }
 }
