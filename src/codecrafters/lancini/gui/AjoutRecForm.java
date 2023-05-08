@@ -45,69 +45,71 @@ public class AjoutRecForm extends Form {
         super("Ajouter une réclamation");
         
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, ev -> {
-            previous.showBack();
-        });
+            previous.showBack();});
        
-        // Create text fields for the réclamation information
-        TextField nomField = new TextField("", "Nom");
+        
+         TextField nomField = new TextField("", "Nom");
         TextField prenomField = new TextField("", "Prénom");
         TextField descriptionField = new TextField("", "Description");
-        TextField sujetField = new TextField("", "Sujet");
-        TextField emailField = new TextField("", "Email");
+        TextField sujetdereclamationsField = new TextField("", "Sujet de la réclamation");
+        TextField emailField = new TextField("", "E-mail");
         TextField telField = new TextField("", "Téléphone");
         TextField etatField = new TextField("", "Etat");
 
-        // Create a button to submit the réclamation
-        Button submitBtn = new Button("Soumettre");
-        submitBtn.addActionListener(e -> {
-            // Validate the entered values
+        
+        Button addBtn = new Button("Soumettre");
+        addBtn.addActionListener(e -> {
+            
             try {
-                String nom = nomField.getText().trim();
-                String prenom = prenomField.getText().trim();
-                String description = descriptionField.getText().trim();
-                String sujet = sujetField.getText().trim();
-                String email = emailField.getText().trim();
-                String tel = telField.getText().trim();
-                String etat = etatField.getText().trim();
+                String nom = nomField.getText();
+                String prenom = prenomField.getText();
+                String description = descriptionField.getText();
+                String sujet = sujetdereclamationsField.getText();
+                String email = emailField.getText();
+                String tel = telField.getText();
+                String etat = etatField.getText();
 
                 // Check that the entered values are valid
                 if (nom.isEmpty() || prenom.isEmpty() || description.isEmpty() || sujet.isEmpty() || email.isEmpty() || tel.isEmpty() || etat.isEmpty()) {
-                    Dialog.show("Erreur", "Veuillez saisir des valeurs valides pour tous les champs", "OK", null);
+                    Dialog.show("Erreur", "Veuillez remplir tous les champs", "OK", null);
                     return;
                 }
 
                 // Create a new réclamation with the entered information
-                Reclamation rec = new Reclamation();
-                rec.setNom(nom);
-                rec.setPrenom(prenom);
-                rec.setDescription(description);
-                rec.setSujet(sujet);
-                rec.setEmail(email);
-                rec.setTel(tel);
-                rec.setEtat(etat);
-               
-               ServiceRec.getInstance().addReclamation(rec);
+                Reclamation reclamation = new Reclamation();
+                reclamation.setNom(nom);
+                reclamation.setPrenom(prenom);
+                reclamation.setDescription(description);
+                reclamation.setSujetdereclamations(sujet);
+                reclamation.setEmail(email);
+                reclamation.setTel(tel);
+                reclamation.setEtat(etat);
 
-                // Display a confirmation message
+                ServiceRec.getInstance().addReclamation(reclamation);
+ new AfficherRecForm().show();
+                // Show a confirmation message and return to the home page
                 Dialog.show("Confirmation", "Bonjour, votre réclamation a été déposée sur LANCINI.", "OK", null);
-
-                // Return to the home page
-                previous.showBack();
+               
             } catch (NumberFormatException ex) {
                 // Handle the case where the entered values are not valid numbers
-                Dialog.show("Erreur", "Veuillez saisir des entrées valides", "OK", null);
+                Dialog.show("Erreur", "Veuillez saisir des valeurs valides", "OK", null);
             }
         });
-       
-        // Add the text fields to the form
+
+        // Add the text fields and combo box to the form
         add(nomField);
         add(prenomField);
         add(descriptionField);
-        add(sujetField);
+        add(sujetdereclamationsField);
         add(emailField);
         add(telField);
         add(etatField);
-
-        add(submitBtn);
+        add(addBtn);
     }
+
+
+   //public void showAdd() {
+   //AjoutRecForm form = new AjoutRecForm();
+    //form.show();
+ //}
 }

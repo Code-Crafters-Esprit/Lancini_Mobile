@@ -1,6 +1,8 @@
 package codecrafters.lancini.myapp;
 
 
+import codecrafters.lancini.gui.AfficherRecForm;
+import codecrafters.lancini.gui.AjoutRecForm;
 import codecrafters.lancini.gui.HomePageForm;
 import com.codename1.components.ImageViewer;
 import static com.codename1.ui.CN.*;
@@ -53,12 +55,18 @@ public class MyApplication {
     public void start() {
        HomePageForm homePageForm = new HomePageForm();
         homePageForm.show();
+        
+ 
+              new AfficherRecForm().showAfficherRec();
+
      
         UIBuilder.registerCustomComponent("ImageViewer",ImageViewer.class);
         Form f1;
         UIBuilder uib = new UIBuilder();
         Container cnt = uib.createContainer(theme,"GUI 1");
         f1 = (Form) cnt;
+        
+        
        
     }
 

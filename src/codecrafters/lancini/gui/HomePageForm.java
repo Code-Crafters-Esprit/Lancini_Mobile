@@ -18,19 +18,19 @@ Form current;
         btnRec.addActionListener(e->new AjoutRecForm(current).show());
         add(btnRec);
 
-        Button btnAvi = new Button("Ajouter un avis");
-        btnAvi.addActionListener(e->new AjoutAviForm(current).show());
+        //Button btnAvi = new Button("Ajouter un avis");
+        //btnAvi.addActionListener(e->new AjoutAviForm(current).show());
          
-        add(btnAvi);
+        //add(btnAvi);
 
         Button btnAfficherRec = new Button("Afficher Réclamation");
-        btnAfficherRec.addActionListener(e->new AfficherRecForm(current).show());
+        btnAfficherRec.addActionListener(e->new AfficherRecForm().show());
           
         add(btnAfficherRec);
 
-        Button btnAfficherAvi = new Button("Afficher Avis");
-        btnAfficherAvi.addActionListener(e->new ListAviForm(current).show());
+        //Button btnAfficherAvi = new Button("Afficher Avis");
+        //btnAfficherAvi.addActionListener(e->new ListAviForm(current).show());
          
-        add(btnAfficherAvi);
+        //add(btnAfficherAvi);
     }
 }

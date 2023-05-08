@@ -55,8 +55,8 @@ public class ServiceRec {
                 Reclamation r = new Reclamation();
 
                 float id = Float.parseFloat(obj.get("id").toString());
-                int idAsInt = (int) id;
-                r.setId(idAsInt);
+   
+                r.setId((int) id);
 
                 String nom = obj.get("nom").toString();
                 r.setNom(nom);
@@ -67,8 +67,8 @@ public class ServiceRec {
                 String description = obj.get("description").toString();
                 r.setDescription(description);
 
-                String sujet = obj.get("sujet").toString();
-                r.setSujet(sujet);
+                String sujetdereclamations = obj.get("sujetdereclamations").toString();
+                r.setSujetdereclamations(sujetdereclamations);
 
                 String email = obj.get("email").toString();
                 r.setEmail(email);
@@ -91,7 +91,7 @@ public class ServiceRec {
     }
 
     public ArrayList<Reclamation> getAllReclamations() {
-        String url = MaConnection.BASE_URL + "/jsonReclamation";
+        String url = MaConnection.BASE_URL + "/AllReclamations"; 
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -106,7 +106,7 @@ public class ServiceRec {
     }
 
     public boolean addReclamation(Reclamation r) {
-        String url = MaConnection.BASE_URL + "/api/ajoutReclamation?nom=" + r.getNom() + "&prenom=" + r.getPrenom() + "&description=" + r.getDescription() + "&sujet=" + r.getSujet() + "&email=" + r.getEmail() + "&tel=" + r.getTel() + "&etat=" + r.getEtat();
+        String url = MaConnection.BASE_URL + "/addReclamationJSON/new?nom=" + r.getNom() + "&prenom=" + r.getPrenom() + "&description=" + r.getDescription() + "&sujetdereclamations=" + r.getSujetdereclamations() + "&email=" + r.getEmail() + "&tel=" + r.getTel() + "&etat=" + r.getEtat();
         req.setUrl(url); //création de l'URL
         req.setPost(false);
         NetworkManager.getInstance().addToQueueAndWait(req);
@@ -122,5 +122,35 @@ public class ServiceRec {
         NetworkManager.getInstance().addToQueueAndWait(req);
         return resultOK;
     }
+    public boolean deleteReclamation(int id) {
+    String url = MaConnection.BASE_URL + "deleteReclamationJSON/{id}" + id;
+    req.setUrl(url);
+    req.setHttpMethod("DELETE");
+
+    req.addResponseListener(new ActionListener<NetworkEvent>() {
+        @Override
+        public void actionPerformed(NetworkEvent evt) {
+            resultOK = parseBoolean(new String(req.getResponseData()));
+            req.removeResponseListener(this);
+        }
+    });
+    NetworkManager.getInstance().addToQueueAndWait(req);
+
+    return resultOK;
+}
+
+private boolean parseBoolean(String jsonText) {
+    try {
+        Map<String, Object> response = new JSONParser().parseJSON(new CharArrayReader(jsonText.toCharArray()));
+        return Boolean.parseBoolean(response.get("deleted").toString());
+    } catch (IOException ex) {
+        return false;
+    }
+}
+
+    public boolean modifierReclamation(int id, String nom, String prenom, String description, String sujet, String email, String tel, String etat) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
 
