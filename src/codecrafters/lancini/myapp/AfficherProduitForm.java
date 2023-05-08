@@ -9,6 +9,7 @@ import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.EncodedImage;
+import com.codename1.ui.Font;
 import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
@@ -17,6 +18,9 @@ import com.codename1.ui.URLImage;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
+import com.codename1.ui.layouts.FlowLayout;
+import com.codename1.ui.plaf.Border;
+import com.codename1.ui.plaf.RoundRectBorder;
 import com.codename1.ui.plaf.Style;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -56,42 +60,66 @@ public class AfficherProduitForm extends Form {
         };
         setBackCommand(backButton);
     }
-
     public void addElement(Produit produit) {
-        Container container = new Container(new BorderLayout());
+    // Create the container for the product element
+    Container container = new Container(new FlowLayout(Component.LEFT));
+    container.getAllStyles().setBorder(Border.createLineBorder(1, 0xCCCCCC)); // Add border
+    container.getAllStyles().setMarginBottom(10); // Add spacing between product elements
 
-        // Create an ImageViewer to display the product image
-        ImageViewer imageViewer = new ImageViewer();
-        try {
-            EncodedImage placeholder = EncodedImage.create("/placeholder_image.png");
-            Image image = Image.createImage("/" + produit.getImage());
-            imageViewer.setImage(image);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        container.add(BorderLayout.WEST, imageViewer);
-
-        // Create a Container for the product details
-        Container detailsContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-
-        // Add the product details to the detailsContainer
-        Label nameLabel = new Label(produit.getNom());
-        Label descriptionLabel = new Label(produit.getDescription());
-        Label priceLabel = new Label("Price: " + produit.getPrix());
-        detailsContainer.add(nameLabel);
-        detailsContainer.add(descriptionLabel);
-        detailsContainer.add(priceLabel);
-
-        container.add(BorderLayout.CENTER, detailsContainer);
-
-        // Create a "Show Details" button
-        Button showDetailsButton = new Button(FontImage.MATERIAL_INFO);
-        showDetailsButton.setUIID("ShowDetailsButton");
-        showDetailsButton.addActionListener(e -> showProductDetails(produit)); // Call the showProductDetails() method passing the product
-        container.add(BorderLayout.EAST, showDetailsButton);
-
-        add(container);
+    // Create an ImageViewer to display the product image
+    ImageViewer imageViewer = new ImageViewer();
+    try {
+        EncodedImage placeholder = EncodedImage.create("/placeholder_image.png");
+        Image image = Image.createImage("/" + produit.getImage());
+        Image resizedImage = image.scaled(100, 100); // Adjust the width and height as per your requirement
+        imageViewer.setImage(resizedImage);
+    } catch (IOException ex) {
+        ex.printStackTrace();
+        // Handle the exception or display an error message
     }
+    container.add(imageViewer);
+
+    // Create a Container for the product details
+    Container detailsContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+
+    // Add the product details to the detailsContainer
+    Label nameLabel = new Label(produit.getNom());
+    nameLabel.getAllStyles().setFont(Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM)); // Set font style
+    nameLabel.getAllStyles().setMarginBottom(5); // Add margin
+
+    Label descriptionLabel = new Label(produit.getDescription());
+    descriptionLabel.getAllStyles().setFgColor(0x666666); // Set text color
+    descriptionLabel.getAllStyles().setMarginBottom(5); // Add margin
+
+    Label priceLabel = new Label("Price: " + produit.getPrix());
+    priceLabel.getAllStyles().setFont(Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM)); // Set font style
+    priceLabel.getAllStyles().setFgColor(0x008000); // Set text color
+    priceLabel.getAllStyles().setMarginBottom(5); // Add margin
+
+    detailsContainer.add(nameLabel);
+    detailsContainer.add(descriptionLabel);
+    detailsContainer.add(priceLabel);
+
+    container.add(detailsContainer);
+
+    // Create a "Show Details" button
+    Button showDetailsButton = new Button(FontImage.MATERIAL_INFO);
+    showDetailsButton.getAllStyles().setFgColor(0xFFFFFF); // Set text color
+    showDetailsButton.getAllStyles().setBgColor(0x007BFF); // Set background color
+    showDetailsButton.getAllStyles().setPadding(Component.TOP, 5); // Add padding
+    showDetailsButton.getAllStyles().setPadding(Component.BOTTOM, 5); // Add padding
+    showDetailsButton.getAllStyles().setPadding(Component.LEFT, 10); // Add padding
+    showDetailsButton.getAllStyles().setPadding(Component.RIGHT, 10); // Add padding
+    showDetailsButton.getAllStyles().setBorder(RoundRectBorder.create()); // Add border
+    showDetailsButton.getAllStyles().setMargin(Component.TOP, 5); // Add margin
+    showDetailsButton.getAllStyles().setMargin(Component.BOTTOM, 5); // Add margin
+
+    showDetailsButton.addActionListener(e -> showProductDetails(produit)); // Call the showProductDetails() method passing the product
+    container.add(showDetailsButton);
+
+    add(container);
+}
+
 
 public void showProductDetails(Produit produit) {
     // Create a new Form to display the product details
@@ -144,6 +172,7 @@ public void showProductDetails(Produit produit) {
             // Show error message if update operation fails
             Dialog.show("Error", "Failed to update product", "OK", null);
         }
+
     });
 
     // Add the buttons to the productDetailsForm
