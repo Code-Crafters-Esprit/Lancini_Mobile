@@ -1,9 +1,10 @@
 package codecrafters.lancini.myapp;
 
 
-import codecrafters.lancini.gui.HomeInterface;
+import codecrafters.lancini.gui.OffreHomeInterface;
 import codecrafters.lancini.gui.CommunityHome;
 import codecrafters.lancini.gui.EvenementListForm;
+import codecrafters.lancini.gui.HomeInterface;
 import codecrafters.lancini.gui.PublicationListForm;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
@@ -52,8 +53,9 @@ public class MyApplication {
     }
     
     public void start() {
-        //new HomeInterface().show();
-        new CommunityHome().showCommunityHome();
+        //new OffreHomeInterface().show();
+        //new CommunityHome().showCommunityHome();
+        new HomeInterface().showHomeInterface();
     }
     public void stop() {
         current = getCurrentForm();

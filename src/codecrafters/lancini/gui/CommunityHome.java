@@ -28,7 +28,9 @@ import com.sun.java.accessibility.util.SwingEventMonitor;
  * @author Samar
  */
 public class CommunityHome extends  Form{
-    public CommunityHome() {
+    public CommunityHome(Form previous) {
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK,
+                ev -> {previous.showBack();} );
 //        Resources res = null ;
         setTitle("Home");
         setLayout(BoxLayout.y());
@@ -47,7 +49,7 @@ public class CommunityHome extends  Form{
 
         btnEvents.addActionListener(e-> new EvenementListForm(this).show());
         btnPubs.addActionListener(e-> new PublicationListForm(this).show());
-        Map.addActionListener(e-> new MapFormEvent());
+        Map.addActionListener(e-> new MapForm(this));
 
 
 
@@ -98,7 +100,7 @@ public class CommunityHome extends  Form{
 //    
     
      public void showCommunityHome() {
-            CommunityHome form = new CommunityHome();
+            CommunityHome form = new CommunityHome(this);
         form.show();
     }
 }
