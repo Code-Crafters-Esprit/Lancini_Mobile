@@ -1,6 +1,7 @@
 package codecrafters.lancini.myapp;
 
 
+import codecrafters.lancini.gui.HomeInterface;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
@@ -20,7 +21,7 @@ import com.codename1.io.NetworkEvent;
  */
 public class MyApplication {
 
-    private Form current;
+          private Form current;
     private Resources theme;
 
     public void init(Object context) {
@@ -43,19 +44,13 @@ public class MyApplication {
             }
             Log.sendLogAsync();
             Dialog.show("Connection Error", "There was a networking error in the connection to " + err.getConnectionRequest().getUrl(), "OK", null);
-        });        
+        });   
+        
     }
     
     public void start() {
-        if(current != null){
-            current.show();
-            return;
-        }
-        Form hi = new Form("Hi World", BoxLayout.y());
-        hi.add(new Label("Hi World"));
-        hi.show();
+        new HomeInterface().show();
     }
-
     public void stop() {
         current = getCurrentForm();
         if(current instanceof Dialog) {
