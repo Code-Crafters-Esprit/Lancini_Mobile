@@ -128,6 +128,7 @@ public class EditProfileInterface extends Form{
                 if(succed){
                     Session.setCurrentUser(updatedUser);
                     currentUser = updatedUser;
+                    new ProfileInterface().show();
                 }else{
                     Dialog.show("Sorry", "There was a connection error", "OK", null);
                 }

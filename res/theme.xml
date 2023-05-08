@@ -102,8 +102,8 @@
             <entry key="Calendar.Thursday" value="Thu" />
             <entry key="ok" value="OK" />
             <entry key="Calendar.Saturday" value="Sat" />
-            <entry key="Calendar.Friday" value="Fri" />
             <entry key="select" value="Select" />
+            <entry key="Calendar.Friday" value="Fri" />
             <entry key="edit" value="Edit" />
             <entry key="Calendar.Monday" value="Mon" />
             <entry key="cancel" value="Cancel" />
@@ -640,6 +640,11 @@
         <val key="navigationButton.press#fgColor" value="e77c6e" />
         <font key="navigationButton.press#font" type="system" face="0" style="0" size="8" />
         <val key="navigationButton.textDecoration" value="1" />
+        <val key="roundedBorderContainer.bgImage" value="Button.borderTop_2.png" />
+        <val key="roundedBorderContainer.bgType" value="33" />
+        <border key="roundedBorderContainer.border" type="roundRect" strokeColor="15975582" strokeOpacity="255" strokeThickness="0.5" strokeMM="false" shadowSpread="10.0" shadowOpacity="0" shadowX="0.5" shadowY="0.5" shadowBlur="10.0" topOnlyMode="false" bottomOnlyMode="false" cornerRadius="2.0" bezierCorners="false" />
+        <val key="roundedBorderContainer.margin" value="20.0,10.0,10.0,10.0" />
+        <val key="roundedBorderContainer.padding" value="10.0,10.0,15.0,15.0" />
         <val key="transparency" value="0" />
     </theme>
     <image name="toolbar-profile-pic.png" type="multi"  />

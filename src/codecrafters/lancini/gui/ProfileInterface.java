@@ -6,6 +6,7 @@
 package codecrafters.lancini.gui;
 
 import codecrafters.lancini.entities.User;
+import codecrafters.lancini.service.SMSService;
 import codecrafters.lancini.tools.Session;
 import com.codename1.components.ImageViewer;
 import com.codename1.ui.Form;
@@ -54,6 +55,8 @@ public class ProfileInterface extends Form {
         String phoneString = currentUser.getNumTel() == null || currentUser.getNumTel().isEmpty() ? "No phone number added" : currentUser.getNumTel();        
         Label phone = new Label(phoneString);
         Button editProfile = new Button("Edit profile");
+        String editPhoneString = currentUser.getNumTel() == null || currentUser.getNumTel().isEmpty() ? "Add phone number" : "Edit phone number";
+        Button editPhoneNumber = new Button(editPhoneString);
         byte[] imageData = Base64.decode(currentUser.getPhotoPath().getBytes());
         Image image = EncodedImage.createImage(imageData, 0, imageData.length);
         //Get screen width and set the image size
@@ -87,10 +90,15 @@ public class ProfileInterface extends Form {
                 phone,
                 bioLabel,
                 bio,
-                editProfile
+                editProfile,
+                editPhoneNumber
         );
         editProfile.addActionListener(e -> {
             new EditProfileInterface().show();
+            //String SMS = SMSService.sendVerificationSMS("+21654801411");
+        });
+        editPhoneNumber.addActionListener(e -> {
+            new EditPhoneNumberForm().show();
         });
         add(content);
     }

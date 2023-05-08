@@ -51,7 +51,7 @@ public class UserService {
         request.setPost(true);
         request.setContentType("application/json");
         String jsonBody = "{\"email\": \"" + user.getEmail() + "\", \"bio\": \"" + user.getBio()+ "\", \"nom\": \"" + user.getNom() + "\", \"prenom\": \"" + user.getPrenom() + "\", \"numtel\": \"" + user.getNumTel()+ "\"}";
-        
+        System.out.println(jsonBody);
         request.setRequestBody(jsonBody);
         
         request.addResponseListener(e -> {
@@ -62,7 +62,7 @@ public class UserService {
             }
         });
         
-        NetworkManager.getInstance().addToQueueAndWait(req);
+        NetworkManager.getInstance().addToQueueAndWait(request);
         
         return success;
     }
