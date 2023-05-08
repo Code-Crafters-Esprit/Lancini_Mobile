@@ -9,6 +9,7 @@ import codecrafters.lancini.entities.Cv;
 import codecrafters.lancini.service.CvService;
 import com.codename1.ui.Button;
 import com.codename1.ui.Dialog;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.TextField;
 import com.codename1.ui.spinner.Picker;
@@ -21,6 +22,11 @@ public class CveditForm extends Form {
    
     public CveditForm(Cv cv1) {
         super("edit Cv");
+        
+            getToolbar().addMaterialCommandToRightBar("Go Back", FontImage.MATERIAL_REMOVE,
+                e -> {
+                    new CvListForm().show();
+                });
         
         // Create text fields and a combo box for the cv information
         TextField nomField = new TextField(cv1.getNom(), "nom");
@@ -96,6 +102,7 @@ public class CveditForm extends Form {
     }
    
  public void showAdd() {
+     
  CvAddForm form = new CvAddForm();
   form.show();
 }    

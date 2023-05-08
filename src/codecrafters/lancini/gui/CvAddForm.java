@@ -24,6 +24,11 @@ public class CvAddForm extends Form {
     public CvAddForm() {
         super("Add Cv");
         
+            getToolbar().addMaterialCommandToRightBar("Go Back", FontImage.MATERIAL_REMOVE,
+                e -> {
+                    new CvListForm().show();
+                });
+        
         // Create text fields and a combo box for the cv information
         TextField nomField = new TextField("", "nom");
         TextField prenomField = new TextField("", "prenom");

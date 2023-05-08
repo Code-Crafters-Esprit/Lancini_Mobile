@@ -95,10 +95,13 @@ public class CvListForm extends Form{
 
                 cvContainer.removeComponent(cvRow);
             });
+            
+           
+
 
             // Add the labels to the cv row
             Container labelsContainer = new Container(new GridLayout(5, 1));
-//            labelsContainer.add(idLabel);
+
             labelsContainer.add(nomLabel);
             labelsContainer.add(prenomLabel);
             labelsContainer.add(dateLabel);
@@ -112,6 +115,7 @@ public class CvListForm extends Form{
             
             labelsContainer.add(deleteBtn);
             labelsContainer.add(editBtn);
+            
             cvRow.add(BorderLayout.CENTER, labelsContainer);
 
             cvContainer.add(cvRow);
