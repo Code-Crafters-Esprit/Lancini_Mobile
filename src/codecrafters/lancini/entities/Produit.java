@@ -7,12 +7,49 @@ public class Produit {
     private String nom, categorie, description, image;
     private float prix;
     private Date date;
+     private User vendeur;
+     private int idVendeur;
 
     public Produit() {
     }
 
     public Produit(int idProduit) {
         this.idProduit = idProduit;
+    }
+
+    public int getIdVendeur() {
+        return this.idVendeur;
+    }
+       public User getVendeur() {
+        return vendeur;
+    }
+
+    public void setVendeur(User vendeur) {
+        this.vendeur = vendeur;
+    }
+    public void setIdVendeur(int vendeur) {
+        this.idVendeur = vendeur;
+    }
+
+    public Produit(String nom, String categorie, String description, String image, float prix, Date date, User vendeur) {
+        this.nom = nom;
+        this.categorie = categorie;
+        this.description = description;
+        this.image = image;
+        this.prix = prix;
+        this.date = date;
+        this.vendeur = vendeur;
+    }
+
+    public Produit(int idProduit, String nom, String categorie, String description, String image, float prix, Date date, User vendeur) {
+        this.idProduit = idProduit;
+        this.nom = nom;
+        this.categorie = categorie;
+        this.description = description;
+        this.image = image;
+        this.prix = prix;
+        this.date = date;
+        this.vendeur = vendeur;
     }
 
     public Produit(int idProduit, String nom, String categorie, String description, String image, float prix, Date date) {

@@ -5,22 +5,27 @@
  */
 package codecrafters.lancini.myapp;
 
+import codecrafters.lancini.entities.User;
 import codecrafters.lancini.service.NewsArticle;
 import codecrafters.lancini.service.NewsService;
+import com.codename1.components.ImageViewer;
 
 import com.codename1.ui.Button;
 import com.codename1.ui.Container;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
+import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Font;
 import com.codename1.ui.Form;
+import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextArea;
+import com.codename1.ui.URLImage;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.plaf.Border;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-
 public class HomeForm extends Form {
 
   public HomeForm() {
@@ -41,7 +46,7 @@ public class HomeForm extends Form {
     fetchNewsArticles(); // Fetch news articles
 }
 
-  public void displayNewsArticles(String title, String description) {
+  public void displayNewsArticles(String title, String description , String urlToImage) {
     // Create container for each news article
     Container newsContainer = new Container(BoxLayout.y());
     newsContainer.getAllStyles().setBorder(Border.createLineBorder(1, 0xCCCCCC)); // Add border
@@ -58,7 +63,7 @@ public class HomeForm extends Form {
 
     // Create button for more details
     Button btnDetails = new Button("More Details");
-    btnDetails.addActionListener(e -> showNewsDetails(title, description));
+    btnDetails.addActionListener(e -> showNewsDetails(title, description ,urlToImage));
 
     // Add labels and button to the container
     newsContainer.add(lblTitle);
@@ -69,8 +74,8 @@ public class HomeForm extends Form {
     add(newsContainer);
 
     revalidate(); // Refresh the form to show the new components
-}
-public void showNewsDetails(String title, String description) {
+  }
+public void showNewsDetails(String title, String description, String urlToImage) {
     Form newsDetailsForm = new Form(title);
     newsDetailsForm.setLayout(BoxLayout.y());
 
@@ -84,13 +89,24 @@ public void showNewsDetails(String title, String description) {
 
     newsDetailsForm.add(txtTitle);
     newsDetailsForm.add(txtDescription);
- Button btnBack = new Button("Back");
+
+    // Load and display the article image
+    try {
+        EncodedImage placeholder = EncodedImage.create("/placeholder_image.png");
+        String storageKey = "article_image_" + title.hashCode(); // Generate unique storage key based on article title
+        Image articleImage = URLImage.createToStorage(placeholder, storageKey, urlToImage);
+        ImageViewer imageViewer = new ImageViewer(articleImage);
+        newsDetailsForm.add(imageViewer);
+    } catch (IOException ex) {
+        ex.printStackTrace();
+    }
+
+    Button btnBack = new Button("Back");
     btnBack.addActionListener(e -> showBack());
 
     newsDetailsForm.add(btnBack);
     newsDetailsForm.show();
 }
-
 
     private void fetchNewsArticles() {
     NewsService newsService = new NewsService();
@@ -99,7 +115,7 @@ public void showNewsDetails(String title, String description) {
         public void update(Observable o, Object arg) {
             if (arg instanceof NewsArticle) {
                 NewsArticle newsArticle = (NewsArticle) arg;
-                Display.getInstance().callSerially(() -> displayNewsArticles(newsArticle.getTitle(), newsArticle.getDescription()));
+                Display.getInstance().callSerially(() -> displayNewsArticles(newsArticle.getTitle(), newsArticle.getDescription(), newsArticle.getUrlToImage()));
             } else {
                 Dialog.show("Error", "Failed to retrieve news articles", "OK", null);
             }

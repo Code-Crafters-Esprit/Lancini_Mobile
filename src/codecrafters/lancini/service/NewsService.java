@@ -30,9 +30,10 @@ public class NewsService extends Observable {
                 for (Map<String, Object> article : articles) {
                     String title = (String) article.get("title");
                     String description = (String) article.get("description");
+                     String urlToImage = (String) article.get("urlToImage");
 
                     // Notify observers with the article data
-                    NewsArticle newsArticle = new NewsArticle(title, description);
+                    NewsArticle newsArticle = new NewsArticle(title, description,urlToImage);
                     setChanged();
                     notifyObservers(newsArticle);
                 }

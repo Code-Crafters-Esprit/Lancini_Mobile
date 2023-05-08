@@ -31,6 +31,7 @@ public class AjouterProduitForm extends Form {
         TextField descriptionTF = new TextField("", "Description");
         TextField prixTF = new TextField("", "Prix");
         Picker date = new Picker();
+        TextField vendeurTF = new TextField("", "vendeur");
 
         Button uploadBtn = new Button("Upload Image");
         uploadBtn.addActionListener(e -> {
@@ -64,6 +65,7 @@ public class AjouterProduitForm extends Form {
                         nomTF.clear();
                         descriptionTF.clear();
                         prixTF.clear();
+                        vendeurTF.clear();
                     } else {
                         Dialog.show("ERROR", "Server error", new Command("OK"));
                     }

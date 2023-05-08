@@ -71,7 +71,7 @@ public class AfficherProduitForm extends Form {
     try {
         EncodedImage placeholder = EncodedImage.create("/placeholder_image.png");
         Image image = Image.createImage("/" + produit.getImage());
-        Image resizedImage = image.scaled(100, 100); // Adjust the width and height as per your requirement
+        Image resizedImage = image.scaled(300, 300); // Adjust the width and height as per your requirement
         imageViewer.setImage(resizedImage);
     } catch (IOException ex) {
         ex.printStackTrace();
@@ -87,18 +87,13 @@ public class AfficherProduitForm extends Form {
     nameLabel.getAllStyles().setFont(Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM)); // Set font style
     nameLabel.getAllStyles().setMarginBottom(5); // Add margin
 
-    Label descriptionLabel = new Label(produit.getDescription());
-    descriptionLabel.getAllStyles().setFgColor(0x666666); // Set text color
-    descriptionLabel.getAllStyles().setMarginBottom(5); // Add margin
+    Label categorienLabel = new Label(produit.getCategorie());
+    categorienLabel.getAllStyles().setFgColor(0x666666); // Set text color
+    categorienLabel.getAllStyles().setMarginBottom(5); // Add margin
 
-    Label priceLabel = new Label("Price: " + produit.getPrix());
-    priceLabel.getAllStyles().setFont(Font.createSystemFont(Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM)); // Set font style
-    priceLabel.getAllStyles().setFgColor(0x008000); // Set text color
-    priceLabel.getAllStyles().setMarginBottom(5); // Add margin
+    detailsContainer.add(categorienLabel);
+     detailsContainer.add(nameLabel);
 
-    detailsContainer.add(nameLabel);
-    detailsContainer.add(descriptionLabel);
-    detailsContainer.add(priceLabel);
 
     container.add(detailsContainer);
 
@@ -106,13 +101,13 @@ public class AfficherProduitForm extends Form {
     Button showDetailsButton = new Button(FontImage.MATERIAL_INFO);
     showDetailsButton.getAllStyles().setFgColor(0xFFFFFF); // Set text color
     showDetailsButton.getAllStyles().setBgColor(0x007BFF); // Set background color
-    showDetailsButton.getAllStyles().setPadding(Component.TOP, 5); // Add padding
-    showDetailsButton.getAllStyles().setPadding(Component.BOTTOM, 5); // Add padding
-    showDetailsButton.getAllStyles().setPadding(Component.LEFT, 10); // Add padding
-    showDetailsButton.getAllStyles().setPadding(Component.RIGHT, 10); // Add padding
-    showDetailsButton.getAllStyles().setBorder(RoundRectBorder.create()); // Add border
-    showDetailsButton.getAllStyles().setMargin(Component.TOP, 5); // Add margin
-    showDetailsButton.getAllStyles().setMargin(Component.BOTTOM, 5); // Add margin
+//    showDetailsButton.getAllStyles().setPadding(Component.TOP, 5); // Add padding
+//    showDetailsButton.getAllStyles().setPadding(Component.BOTTOM, 5); // Add padding
+//    showDetailsButton.getAllStyles().setPadding(Component.LEFT, 10); // Add padding
+//    showDetailsButton.getAllStyles().setPadding(Component.RIGHT, 10); // Add padding
+//    showDetailsButton.getAllStyles().setBorder(RoundRectBorder.create()); // Add border
+//    showDetailsButton.getAllStyles().setMargin(Component.TOP, 5); // Add margin
+//    showDetailsButton.getAllStyles().setMargin(Component.BOTTOM, 5); // Add margin
 
     showDetailsButton.addActionListener(e -> showProductDetails(produit)); // Call the showProductDetails() method passing the product
     container.add(showDetailsButton);
@@ -126,21 +121,37 @@ public void showProductDetails(Produit produit) {
     Form productDetailsForm = new Form("Product Details");
     productDetailsForm.setLayout(new BoxLayout(BoxLayout.Y_AXIS));
 
+    // Create an EncodedImage from the product image data
+    ImageViewer imageViewer = new ImageViewer();
+    try {
+        EncodedImage placeholder = EncodedImage.create("/placeholder_image.png");
+        Image image = Image.createImage("/" + produit.getImage());
+        Image resizedImage = image.scaled(500,500); // Adjust the width and height as per your requirement
+        imageViewer.setImage(resizedImage);
+    } catch (IOException ex) {
+        ex.printStackTrace();
+        // Handle the exception or display an error message
+    }
+    
+
+
     // Create Labels to display the product details
     Label nameLabel = new Label("Name: " + produit.getNom());
     Label descriptionLabel = new Label("Description: " + produit.getDescription());
     Label priceLabel = new Label("Price: " + produit.getPrix());
+     Label vendeurLabel = new Label("Seller: " + produit.getVendeur().getNom() + " " +  produit.getVendeur().getPrenom());
 
     // Apply custom styling to the labels
     nameLabel.setUIID("ProductDetailsLabel");
     descriptionLabel.setUIID("ProductDetailsLabel");
     priceLabel.setUIID("ProductDetailsLabel");
 
-    // Add the Labels to the productDetailsForm
+    // Add the Labels and the image to the productDetailsForm
+    productDetailsForm.add(imageViewer);
     productDetailsForm.add(nameLabel);
     productDetailsForm.add(descriptionLabel);
     productDetailsForm.add(priceLabel);
-
+    productDetailsForm.add(vendeurLabel);
     // Create buttons for delete and update actions
     Button deleteButton = new Button("Delete");
    deleteButton.addActionListener(e -> {
@@ -178,6 +189,7 @@ public void showProductDetails(Produit produit) {
     // Add the buttons to the productDetailsForm
     productDetailsForm.add(deleteButton);
     productDetailsForm.add(updateButton);
+    
 
     // Create a back button
     Button backButton = new Button("Back");
@@ -213,6 +225,7 @@ private void refreshProductDetails(Form productDetailsForm, Produit produit) {
     Label nameLabel = new Label("Name: " + produit.getNom());
     Label descriptionLabel = new Label("Description: " + produit.getDescription());
     Label priceLabel = new Label("Price: " + produit.getPrix());
+    Label vendeurLabel = new Label("Seller: " + produit.getVendeur().getNom() + " " +  produit.getVendeur().getPrenom());
 
     // Apply custom styling to the labels
     nameLabel.setUIID("ProductDetailsLabel");
@@ -223,6 +236,7 @@ private void refreshProductDetails(Form productDetailsForm, Produit produit) {
     productDetailsForm.add(nameLabel);
     productDetailsForm.add(descriptionLabel);
     productDetailsForm.add(priceLabel);
+    productDetailsForm.add(vendeurLabel);
 
     // Create buttons for delete and update actions
     Button deleteButton = new Button("Delete");
