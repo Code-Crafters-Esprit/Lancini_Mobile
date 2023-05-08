@@ -256,19 +256,12 @@ private void refreshProductDetails(Form productDetailsForm, Produit produit) {
         }
     }
 });
-    Button updateButton = new Button("Update");
-    updateButton.addActionListener(e -> {
-        // Perform update operation for the product
-        boolean updated =ServiceProduit.getInstance().updateProduit(produit);
-        if (updated) {
-            // Show success message and refresh the product details form
-            Dialog.show("Success", "Product updated", "OK", null);
-            refreshProductDetails(productDetailsForm, produit);
-        } else {
-            // Show error message if update operation fails
-            Dialog.show("Error", "Failed to update product", "OK", null);
-        }
-    });
+   Button updateButton = new Button("Update");
+updateButton.addActionListener(e -> {
+    // Create and open the UpdateProductForm with the selected product
+    UpdateProductForm updateForm = new UpdateProductForm(productDetailsForm, produit);
+    updateForm.show();
+});
 
     // Add the buttons to the productDetailsForm
     productDetailsForm.add(deleteButton);

@@ -4,6 +4,7 @@ import codecrafters.lancini.entities.Produit;
 import codecrafters.lancini.service.ServiceProduit;
 import com.codename1.components.SpanLabel;
 import com.codename1.ui.Button;
+import com.codename1.ui.ComboBox;
 import com.codename1.ui.Command;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
@@ -25,13 +26,20 @@ public class AjouterProduitForm extends Form {
     public AjouterProduitForm(Form previous) {
         setTitle("Add a new Product");
         setLayout(BoxLayout.y());
+        Label categorieLabel =new Label("Choose categorie");
+ ComboBox<String> categorieComboBox = new ComboBox<>();
+        categorieComboBox.addItem("Avatar");
+        categorieComboBox.addItem("Logo");
+        categorieComboBox.addItem("Graphic Design");
+        categorieComboBox.addItem("Mascott");
+        categorieComboBox.addItem("Wallpaper");
+        categorieComboBox.addItem("Background");
 
-        TextField categorieTF = new TextField("", "Categorie");
         TextField nomTF = new TextField("", "Nom");
         TextField descriptionTF = new TextField("", "Description");
         TextField prixTF = new TextField("", "Prix");
         Picker date = new Picker();
-        TextField vendeurTF = new TextField("", "vendeur");
+        ComboBox<String> vendeurComboBox = new ComboBox<>();
 
         Button uploadBtn = new Button("Upload Image");
         uploadBtn.addActionListener(e -> {
@@ -49,23 +57,23 @@ public class AjouterProduitForm extends Form {
         Button btnValider = new Button("Add Product");
 
         btnValider.addActionListener(evt -> {
-            if ((categorieTF.getText().length() == 0) || (nomTF.getText().length() == 0) ||
+            if ((categorieComboBox.getSelectedIndex() == -1)|| (nomTF.getText().length() == 0) ||
                     (descriptionTF.getText().length() == 0) || (prixTF.getText().length() == 0)) {
                 Dialog.show("Alert", "Please fill all the fields", new Command("OK"));
             } else {
                 try {
                     // Get the image file path from the thumbnail label
 
-                    Produit p = new Produit(categorieTF.getText(), nomTF.getText(), descriptionTF.getText(), thumbnailLabel.getText(), Float.parseFloat(prixTF.getText()), date.getDate());
+                    Produit p = new Produit(categorieComboBox.getSelectedItem(), nomTF.getText(), descriptionTF.getText(), thumbnailLabel.getText(), Float.parseFloat(prixTF.getText()), date.getDate());
 
-                    p.setCategorie(categorieTF.getText());
+                    p.setCategorie(categorieComboBox.getSelectedItem());
                     if (ServiceProduit.getInstance().addProduit(p)) {
                         Dialog.show("Success", "Product "+thumbnailLabel.getText(), new Command("OK"));
-                        categorieTF.clear();
+                         vendeurComboBox.setSelectedIndex(-1);
                         nomTF.clear();
                         descriptionTF.clear();
                         prixTF.clear();
-                        vendeurTF.clear();
+                       
                     } else {
                         Dialog.show("ERROR", "Server error", new Command("OK"));
                     }
@@ -75,7 +83,7 @@ public class AjouterProduitForm extends Form {
             }
         });
 
-        addAll(categorieTF, nomTF, descriptionTF, prixTF, date, uploadBtn, btnValider);
+        addAll(categorieLabel,categorieComboBox, nomTF, descriptionTF, prixTF, date, uploadBtn, btnValider);
 
 
         // Create the thumbnail label
