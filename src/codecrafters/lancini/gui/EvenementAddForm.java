@@ -63,11 +63,11 @@ public class EvenementAddForm extends Form {
                 
 
                 // Check that the entered values are valid
-                if (titre.isEmpty() || sujet.isEmpty()) {
+                if (titre.isEmpty() || sujet.isEmpty() || horaire.isEmpty()) {
                     Dialog.show("Error", "Please enter valid values for all fields", "OK", null);
                     return;
                 }
-
+ 
                 // Create a new demande with the entered information
                 Evenement event = new Evenement();
                 event.setTitre(titre);

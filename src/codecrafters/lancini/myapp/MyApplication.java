@@ -52,7 +52,8 @@ public class MyApplication {
     }
     
     public void start() {
-        new HomeInterface().show();
+        //new HomeInterface().show();
+        new CommunityHome().showCommunityHome();
     }
     public void stop() {
         current = getCurrentForm();

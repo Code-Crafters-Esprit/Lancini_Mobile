@@ -79,7 +79,7 @@ public class EvenementService {
                 
               //  float proprietaire  =  Float.parseFloat(obj.get("proprietaire ").toString());
             //  int idAsIntP = (int) proprietaire ;              
-                e.setProprietaire(4);
+                e.setProprietaire(2);
                 
                 
 //                v.setCouleur(obj.get("couleur").toString());
@@ -115,7 +115,7 @@ public class EvenementService {
     
      public boolean addEvenement(Evenement e) {
         String date = e.getDateEvent().toString().substring(0, 10);
-        String url = MaConnection.BASE_URL + "/api/ajoutEvenement?titre=" + e.getTitre()+ "&sujet=" + e.getSujet()+"&lieu=" + e.getLieu()+ "&horaire=" + e.getHoraire()+ "&date=" + e.getDateEvent()+ "&proprietaire=" + 3; //création de l'URL
+        String url = MaConnection.BASE_URL + "/api/ajoutEvenement?titre=" + e.getTitre()+ "&sujet=" + e.getSujet()+"&lieu=" + e.getLieu()+ "&horaire=" + e.getHoraire()+ "&date=" + e.getDateEvent()+ "&proprietaire=" + 2; //création de l'URL
         req.setUrl(url);// Insertion de l'URL de notre demande de connexion
         NetworkManager.getInstance().addToQueueAndWait(req);
         System.out.println(url);

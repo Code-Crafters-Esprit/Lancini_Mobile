@@ -42,8 +42,6 @@ public class ListeSecteur extends Form{
             LabelDate(t);
             DateElement(t);
             SuppElement(t);
-            
-
         }
         getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> previous.showBack());
     }

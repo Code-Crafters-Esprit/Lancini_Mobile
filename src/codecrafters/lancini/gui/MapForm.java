@@ -99,9 +99,9 @@ public MapForm(Form previous) {
          f.setLayout(new BorderLayout());
          f.addComponent(BorderLayout.CENTER, cnt);
          f.addComponent(BorderLayout.SOUTH, btnMoveCamera);
+          f.getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> previous.showBack());
 f.show();
  //f.getToolbar().addCommandToRightBar("back", null, (ev)->{ new AjoutReclamationForm(f).show()});
-    f.getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> previous.showBack());
 
     
     }
