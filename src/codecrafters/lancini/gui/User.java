@@ -1,23 +1,20 @@
-package codecrafters.lancini.entities;
+package codecrafters.lancini.gui;
 
 /**
  *
  * @author Youssef-Ayed
  */
-
 public class User {
-
-    private int idUser;
-    private String Nom;
-    private String Prenom;
+    private int idUser; 
+    private String Nom; 
+    private String Prenom; 
     private String email;
-    private String motDePasse;
-    private String role;
-    private String bio;
+    private String motDePasse; 
+    private String role; 
+    private String bio; 
     private String photoPath;
     private String numTel;
-    private String roles;
-
+    
     public User() {
     }
 
@@ -42,7 +39,9 @@ public class User {
         this.photoPath = photoPath;
         this.numTel = numTel;
     }
-
+    
+    
+    
     public User(int idUser, String Nom, String Prenom, String email, String motDePasse, String role, String bio, String photoPath) {
         this.idUser = idUser;
         this.Nom = Nom;
@@ -57,6 +56,7 @@ public class User {
 //    public User(String string, String string0, String string1, String string2, String string3, String string4, String string5) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
+
     public User(int idUser) {
         this.idUser = idUser;
     }
@@ -137,14 +137,8 @@ public class User {
     public void setNumTel(String numTel) {
         this.numTel = numTel;
     }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
+    
+    
 
     @Override
     public String toString() {
