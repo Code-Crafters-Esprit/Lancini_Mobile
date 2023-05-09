@@ -6,7 +6,6 @@ package codecrafters.lancini.entities;
  */
 
 public class User {
-
     private int idUser;
     private String Nom;
     private String Prenom;

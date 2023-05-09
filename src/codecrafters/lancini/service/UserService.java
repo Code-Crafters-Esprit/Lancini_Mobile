@@ -44,7 +44,7 @@ public class UserService {
     }
     
     public boolean editProfile(User user){
-        String url = MaConnection.BASE_URL + "api/user/update/edit/" + user.getIdUser();
+        String url = MaConnection.BASE_URL + "/api/user/update/edit/" + user.getIdUser();
         ConnectionRequest request = new ConnectionRequest();
         
         request.setUrl(url);
@@ -68,7 +68,7 @@ public class UserService {
     }
 
     public boolean Login(String username, String password) {
-        String url = MaConnection.BASE_URL + "api/login_check";
+        String url = MaConnection.BASE_URL + "/api/login_check";
         req.setUrl(url);
         req.setPost(true);
         req.setContentType("application/json");
@@ -101,7 +101,7 @@ public class UserService {
     }
 
     public String Register(User user) {
-        String url = MaConnection.BASE_URL + "api/register";
+        String url = MaConnection.BASE_URL + "/api/register";
         req.setUrl(url);
         req.setPost(true);
         req.setContentType("application/json");
@@ -146,7 +146,7 @@ public class UserService {
     }
 
     public boolean authenticateUser(String token) {
-        String url = MaConnection.BASE_URL + "api/user/info/" + token;
+        String url = MaConnection.BASE_URL + "/api/user/info/" + token;
         ConnectionRequest req2 = new ConnectionRequest();
         req2.setUrl(url);
         req2.setPost(true);

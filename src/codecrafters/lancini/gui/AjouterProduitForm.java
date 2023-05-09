@@ -20,6 +20,7 @@ import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
 import com.codename1.ui.spinner.Picker;
 import com.codename1.ui.util.ImageIO;
+import codecrafters.lancini.entities.User;
 
 import java.io.IOException;
 

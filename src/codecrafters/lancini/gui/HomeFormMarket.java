@@ -5,7 +5,7 @@
  */
 package codecrafters.lancini.gui;
 
-import codecrafters.lancini.gui.User;
+import codecrafters.lancini.entities.User;
 import codecrafters.lancini.service.NewsArticle;
 import codecrafters.lancini.service.NewsService;
 import com.codename1.components.ImageViewer;

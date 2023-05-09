@@ -6,6 +6,7 @@ import codecrafters.lancini.gui.CommunityHome;
 import codecrafters.lancini.gui.EvenementListForm;
 import codecrafters.lancini.gui.HomeInterface;
 import codecrafters.lancini.gui.PublicationListForm;
+import codecrafters.lancini.gui.StartUpInterface;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
@@ -57,7 +58,8 @@ public class MyApplication {
     public void start() {
         //new OffreHomeInterface().show();
         //new CommunityHome().showCommunityHome();
-        new HomeInterface().showHomeInterface();
+        //new HomeInterface().showHomeInterface();
+        new StartUpInterface().show();
     }
     public void stop() {
         current = getCurrentForm();

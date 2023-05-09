@@ -1,6 +1,6 @@
 package codecrafters.lancini.entities;
 
-import codecrafters.lancini.gui.User;
+import codecrafters.lancini.entities.User;
 import java.util.Date;
 
 public class Produit {
