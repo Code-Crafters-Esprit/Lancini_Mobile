@@ -79,7 +79,7 @@ public class AjouterProduitForm extends Form {
                     p.setVendeur(currentUser);
                     p.setCategorie(categorieComboBox.getSelectedItem());
                     if (ServiceProduit.getInstance().addProduit(p)) {
-                        Dialog.show("Success", "Product " + thumbnailLabel.getText(), new Command("OK"));
+                        Dialog.show("Success", " adding Product " + nomTF.getText(), new Command("OK"));
                         categorieComboBox.setSelectedItem("Avatar");
                         nomTF.clear();
                         descriptionTF.clear();
