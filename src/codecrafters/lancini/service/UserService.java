@@ -74,6 +74,7 @@ public class UserService {
         req.setContentType("application/json");
         String jsonBody = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
         //String jsonBody = "{\"username\": \"" + "ayedy40@gmail.com" + "\", \"password\": \"" + "test1234" + "\"}";
+        System.out.println(jsonBody);
         req.setRequestBody(jsonBody);
 
         req.addResponseListener((e) -> {
