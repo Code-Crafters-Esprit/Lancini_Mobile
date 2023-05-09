@@ -52,6 +52,7 @@ public class ServiceProduit {
         ArrayList<Produit> result = new ArrayList<>();
 
         String url = MaConnection.BASE_URL + "/produit/AllProduits";
+        System.out.println(url);
         req.setUrl(url);
         req.setPost(false);
 
@@ -164,8 +165,8 @@ public class ServiceProduit {
 
     public boolean addProduit(Produit p) {
 
-        String url = MaConnection.BASE_URL + "/produit/addProduitJSON/new?categorie=" + p.getCategorie() + "&nom=" + p.getNom() + "&description=" + p.getDescription() + "&image=" + p.getImage() + "&prix=" + p.getPrix() + "&date=" + p.getDate() + "&=vendeur" + p.getVendeur();
-
+        String url = MaConnection.BASE_URL + "/produit/addProduitJSON/new?categorie=" + p.getCategorie() + "&nom=" + p.getNom() + "&description=" + p.getDescription() + "&image=" + p.getImage() + "&prix=" + p.getPrix() + "&date=" + p.getDate() + "&vendeur=" + p.getVendeur().getIdUser();
+        System.out.println(url);
         req.setUrl(url);
         req.setPost(false);
 

@@ -16,6 +16,7 @@ import com.codename1.ui.Dialog;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
 import com.codename1.ui.Font;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
@@ -28,9 +29,13 @@ import java.util.Observable;
 import java.util.Observer;
 public class HomeFormMarket extends Form {
 
-  public HomeFormMarket() {
+  public HomeFormMarket(Form previous) {
+      
     setTitle("Home");
     setLayout(BoxLayout.y());
+     getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK,
+                ev -> {previous.showBack();} );
+        
 
     add(new Label("Choose an option"));
 

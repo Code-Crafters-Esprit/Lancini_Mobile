@@ -32,8 +32,7 @@ public class AfficherProduitForm extends Form {
         setLayout(BoxLayout.y());
  getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> {
             // Show the HomeFormMarket
-            HomeFormMarket homeForm = new HomeFormMarket();
-            homeForm.show();
+            previous.showBack();
         });
         // Set the cover image
         try {

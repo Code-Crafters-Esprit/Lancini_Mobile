@@ -46,7 +46,7 @@ public class HomeInterface  extends  Form {
 
         btnOffers.addActionListener(e-> new EvenementListForm(this).show());
         btnCommunity.addActionListener(e-> new CommunityHome(this).show());
-        btnMarket.addActionListener(e-> new CommunityHome(this).show());
+        btnMarket.addActionListener(e-> new HomeFormMarket(this).show());
         btnVerified.addActionListener(e-> new CvListForm().show());
         btnSupport.addActionListener(e-> new HomePageForm().show());
        
