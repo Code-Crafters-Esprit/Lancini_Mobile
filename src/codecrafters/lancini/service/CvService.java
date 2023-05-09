@@ -29,7 +29,6 @@ import com.codename1.ui.Form;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.layouts.BorderLayout;
-import com.google.zxing.qrcode.encoder.QRCode;
 import java.io.OutputStream;
 
 /**
@@ -94,8 +93,9 @@ public class CvService {
                 String email = obj.get("email").toString();
                 cv.setemail(email);
 
-                String langue = obj.get("langue").toString();
-                cv.setLangue(langue);
+                //String langue = obj.get("langue").toString();
+                //cv.setLangue(langue);
+                cv.setLangue("anglais");
 
                 String education = obj.get("education").toString();
                 cv.setEducation(education);
@@ -113,7 +113,7 @@ public class CvService {
 
     public ArrayList<Cv> getAllcvs() {
 
-        String url = MaConnection.BASE_URL + "cv/showcvsmobile";
+        String url = MaConnection.BASE_URL + "/cv/showcvsmobile";
         req.setUrl(url);
         req.setPost(false);
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -130,7 +130,7 @@ public class CvService {
 
     public boolean addCv(Cv cv) {
         String date = cv.getDateNaissance().toString().substring(0, 10);
-        String url = MaConnection.BASE_URL + "cv/addcvmobile/1" + "?nom=" + cv.getNom() + "&prenom=" + cv.getPrenom() + "&sexe=" + cv.getSexe() + "&dateNaissance=" + cv.getDateNaissance() + "&cin=" + cv.getCin() + "&adresse=" + cv.getAdresse() + "&email=" + cv.getEmail() + "&langue=" + cv.getLangue() + "&education=" + cv.getEducation();
+        String url = MaConnection.BASE_URL + "/cv/addcvmobile/2" + "?nom=" + cv.getNom() + "&prenom=" + cv.getPrenom() + "&sexe=" + cv.getSexe() + "&dateNaissance=" + cv.getDateNaissance() + "&cin=" + cv.getCin() + "&adresse=" + cv.getAdresse() + "&email=" + cv.getEmail() + "&langue=" + cv.getLangue() + "&education=" + cv.getEducation();
 
         req.setUrl(url);// Insertion de l'URL de notre demande de connexion
         NetworkManager.getInstance().addToQueueAndWait(req);
@@ -153,7 +153,7 @@ public class CvService {
         if (d.show("Delete cv"
                 + "..", "Do you really want to remove this cv", "Yes", "No")) {
 
-            req.setUrl(MaConnection.BASE_URL + "cv/deletecvmobile/" + idCv);
+            req.setUrl(MaConnection.BASE_URL + "/cv/deletecvmobile/" + idCv);
 
             NetworkManager.getInstance().addToQueueAndWait(req);
             d.dispose();
@@ -161,7 +161,7 @@ public class CvService {
     }
 
     public boolean editCv(Cv cv) {
-        String url = MaConnection.BASE_URL + "cv/editcvmobile/" + cv.getIdCv() + "?nom=" + cv.getNom() + "&prenom=" + cv.getPrenom() + "&sexe=" + cv.getSexe() + "&dateNaissance=" + cv.getDateNaissance() + "&cin=" + cv.getCin() + "&adresse=" + cv.getAdresse() + "&email=" + cv.getEmail() + "&langue=" + cv.getLangue() + "&education=" + cv.getEducation();
+        String url = MaConnection.BASE_URL + "/cv/editcvmobile/" + cv.getIdCv() + "?nom=" + cv.getNom() + "&prenom=" + cv.getPrenom() + "&sexe=" + cv.getSexe() + "&dateNaissance=" + cv.getDateNaissance() + "&cin=" + cv.getCin() + "&adresse=" + cv.getAdresse() + "&email=" + cv.getEmail() + "&langue=" + cv.getLangue() + "&education=" + cv.getEducation();
         req.setUrl(url);
 
         req.addResponseListener(new ActionListener<NetworkEvent>() {
@@ -179,7 +179,7 @@ public class CvService {
     
     
     public boolean pdf(Cv cv) {
-    String url = MaConnection.BASE_URL + "cv/printcvmobile/" +cv.getIdCv();
+    String url = MaConnection.BASE_URL + "/cv/printcvmobile/" +cv.getIdCv();
     ConnectionRequest req = new ConnectionRequest();
     req.setUrl(url);
     req.setHttpMethod("GET");

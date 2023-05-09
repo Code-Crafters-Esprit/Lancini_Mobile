@@ -39,7 +39,8 @@ public class CvListForm extends Form{
                 e -> {
                     new CvAddForm().show();
                 });
-        
+        getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK,
+                ev -> {new HomeInterface().showHomeInterface();} );
 
         cvs= CvService.getInstance().getAllcvs();
         System.out.println(cvs);

@@ -33,7 +33,7 @@ public class HomeInterface  extends  Form {
         Button btnOffers = new Button("Offers");
         Button btnCommunity = new Button("Community");
         Button btnMarket = new Button("Lancini Market");
-        Button btnVerified = new Button("Get Verified");
+        Button btnVerified = new Button("Show CV");
         Button btnSupport = new Button("Support");
        
        
@@ -47,7 +47,7 @@ public class HomeInterface  extends  Form {
         btnOffers.addActionListener(e-> new EvenementListForm(this).show());
         btnCommunity.addActionListener(e-> new CommunityHome(this).show());
         btnMarket.addActionListener(e-> new CommunityHome(this).show());
-        btnVerified.addActionListener(e-> new CommunityHome(this).show());
+        btnVerified.addActionListener(e-> new CvListForm().show());
         btnSupport.addActionListener(e-> new CommunityHome(this).show());
        
        
