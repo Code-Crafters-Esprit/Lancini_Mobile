@@ -19,9 +19,9 @@ import java.io.IOException;
  *
  * @author Youssef-Ayed
  */
-public class HomeInterface extends Form {
+public class StartUpInterface extends Form {
 
-    public HomeInterface() {
+    public StartUpInterface() {
         setTitle("Home");
         setLayout(BoxLayout.y());
         Label welcome = new Label("Welcome to Lancini Mobile!");

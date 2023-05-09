@@ -1,7 +1,7 @@
 package codecrafters.lancini.myapp;
 
 
-import codecrafters.lancini.gui.HomeInterface;
+import codecrafters.lancini.gui.StartUpInterface;
 import static com.codename1.ui.CN.*;
 import com.codename1.ui.Display;
 import com.codename1.ui.Form;
@@ -48,7 +48,7 @@ public class MyApplication {
     }
     
     public void start() {
-        new HomeInterface().show();
+        new StartUpInterface().show();
     }
 
     public void stop() {

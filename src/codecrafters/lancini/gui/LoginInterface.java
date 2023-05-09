@@ -16,7 +16,7 @@ import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
 import com.codename1.ui.util.Resources;
 import codecrafters.lancini.service.UserService;
-import codecrafters.lancini.gui.HomeInterface;
+import codecrafters.lancini.gui.StartUpInterface;
 import com.codename1.ui.Command;
 import com.codename1.ui.Dialog;
 import com.codename1.ui.FontImage;
@@ -35,7 +35,7 @@ public class LoginInterface extends Form {
         setToolbar(tb);
         Command returnCommand = new Command("") {
             public void actionPerformed(ActionEvent evt) {
-                new HomeInterface().show();
+                new StartUpInterface().show();
             }
         };
         returnCommand.setIcon(FontImage.createMaterial(FontImage.MATERIAL_ARROW_BACK_IOS, UIManager.getInstance().getComponentStyle("TitleCommand")));

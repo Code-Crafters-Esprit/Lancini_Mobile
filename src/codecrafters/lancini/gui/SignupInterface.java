@@ -36,7 +36,7 @@ public class SignupInterface extends Form {
         setToolbar(tb);
         Command returnCommand = new Command("") {
             public void actionPerformed(ActionEvent evt) {
-                new HomeInterface().show();
+                new StartUpInterface().show();
             }
         };
         returnCommand.setIcon(FontImage.createMaterial(FontImage.MATERIAL_ARROW_BACK_IOS, UIManager.getInstance().getComponentStyle("TitleCommand")));
