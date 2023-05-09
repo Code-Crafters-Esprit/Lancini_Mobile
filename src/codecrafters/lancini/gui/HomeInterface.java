@@ -22,9 +22,9 @@ import com.sun.java.accessibility.util.SwingEventMonitor;
  *
  * @author LENOVO
  */
-public class HomeInterface  extends  Form {
-   
-     public HomeInterface() {
+public class HomeInterface extends Form {
+
+    public HomeInterface() {
 //        Resources res = null ;
         setTitle("Home");
         setLayout(BoxLayout.y());
@@ -35,37 +35,27 @@ public class HomeInterface  extends  Form {
         Button btnMarket = new Button("Lancini Market");
         Button btnVerified = new Button("Show CV");
         Button btnSupport = new Button("Support");
-       
-       
+        Button btnProfile = new Button("Profile");
+
 //        
 //        Tabs swipe = new Tabs();
 //        Label spacer1 = new Label();
 //        
 //        addTab(swipe,res.getImage("sda1.jpg"),spacer1," ",""," ");
+        btnOffers.addActionListener(e -> new EvenementListForm(this).show());
+        btnCommunity.addActionListener(e -> new CommunityHome(this).show());
+        btnMarket.addActionListener(e -> new HomeFormMarket(this).show());
+        btnVerified.addActionListener(e -> new CvListForm().show());
+        btnSupport.addActionListener(e -> new HomePageForm().show());
+        btnProfile.addActionListener(e -> new ProfileInterface().show());
 
+        addAll(btnOffers, btnCommunity, btnMarket, btnVerified, btnSupport, btnProfile);
 
-        btnOffers.addActionListener(e-> new EvenementListForm(this).show());
-        btnCommunity.addActionListener(e-> new CommunityHome(this).show());
-        btnMarket.addActionListener(e-> new HomeFormMarket(this).show());
-        btnVerified.addActionListener(e-> new CvListForm().show());
-        btnSupport.addActionListener(e-> new HomePageForm().show());
-       
-       
-
-
-
-       
-        addAll(btnOffers, btnCommunity, btnMarket, btnVerified, btnSupport);
-       
-       
-       
     }
-   
-      public void showHomeInterface() {
-            HomeInterface form = new HomeInterface();
+
+    public void showHomeInterface() {
+        HomeInterface form = new HomeInterface();
         form.show();
     }
-   
-   
-   
+
 }

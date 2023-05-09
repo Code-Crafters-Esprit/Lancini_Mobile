@@ -57,24 +57,28 @@ public class EditPhoneNumberForm extends Form {
         if (currentUser != null) {
             Label fullName = new Label(currentUser.getNom() + " " + currentUser.getPrenom());
 
+            int screenWidth = Display.getInstance().getDisplayWidth();
+        int imageSize = (int) (screenWidth * 0.35);
+        
+        fullName.getAllStyles().setMargin(Component.TOP, 10);
+        fullName.setUIID("CenterLabel");
+        Container headContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+        if(currentUser.getPhotoPath() != null && currentUser.getPhotoPath().length() > 0){
             byte[] imageData = Base64.decode(currentUser.getPhotoPath().getBytes());
             Image image = EncodedImage.createImage(imageData, 0, imageData.length);
-            //Get screen width
-            int screenWidth = Display.getInstance().getDisplayWidth();
-            int imageSize = (int) (screenWidth * 0.35);
+            //Get screen width and set the image size
+
             image = image.scaled(imageSize, imageSize);
             ImageViewer imageViewer = new ImageViewer(image);
-
             //styles
             imageViewer.getAllStyles().setMargin(Component.TOP, 20);
             imageViewer.getAllStyles().setMargin(Component.BOTTOM, 10);
             imageViewer.getAllStyles().setAlignment(Component.CENTER);
-            fullName.getAllStyles().setMargin(Component.TOP, 10);
-            fullName.setUIID("CenterLabel");
-
-            //create header
-            Container headContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
+            
             headContainer.addAll(imageViewer, fullName);
+        }else{
+            headContainer.add(fullName);
+        }
 
             //Add header line
             Container line = new Container();

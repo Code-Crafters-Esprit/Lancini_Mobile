@@ -67,7 +67,8 @@ public class LoginInterface extends Form {
         });
         signIn.addActionListener(e -> {
             if (UserService.getInstance().Login(username.getText(), password.getText())) {
-                new ProfileInterface().show();
+                //new ProfileInterface().show();
+                new HomeInterface().showHomeInterface();
             } else {
                 Dialog.show("Error", "Invalid username or password", "OK", null);
             }

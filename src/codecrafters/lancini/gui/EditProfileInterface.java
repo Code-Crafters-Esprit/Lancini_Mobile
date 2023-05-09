@@ -57,21 +57,28 @@ public class EditProfileInterface extends Form{
         Label phoneLabel = new Label("Phone :");
         TextField phone = new TextField(currentUser.getNumTel());
         Button editProfile = new Button("Save");
-        byte[] imageData = Base64.decode(currentUser.getPhotoPath().getBytes());
-        Image image = EncodedImage.createImage(imageData, 0, imageData.length);
-        //Get screen width and set the image size
         int screenWidth = Display.getInstance().getDisplayWidth();
         int imageSize = (int) (screenWidth * 0.35);
-        image = image.scaled(imageSize, imageSize);
-        ImageViewer imageViewer = new ImageViewer(image);
-        //styles
-        imageViewer.getAllStyles().setMargin(Component.TOP, 20);
-        imageViewer.getAllStyles().setMargin(Component.BOTTOM, 10);
-        imageViewer.getAllStyles().setAlignment(Component.CENTER);
+        
         fullName.getAllStyles().setMargin(Component.TOP, 10);
         fullName.setUIID("CenterLabel");
         Container headContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        headContainer.addAll(imageViewer,fullName);
+        if(currentUser.getPhotoPath() != null && currentUser.getPhotoPath().length() > 0){
+            byte[] imageData = Base64.decode(currentUser.getPhotoPath().getBytes());
+            Image image = EncodedImage.createImage(imageData, 0, imageData.length);
+            //Get screen width and set the image size
+
+            image = image.scaled(imageSize, imageSize);
+            ImageViewer imageViewer = new ImageViewer(image);
+            //styles
+            imageViewer.getAllStyles().setMargin(Component.TOP, 20);
+            imageViewer.getAllStyles().setMargin(Component.BOTTOM, 10);
+            imageViewer.getAllStyles().setAlignment(Component.CENTER);
+            
+            headContainer.addAll(imageViewer, fullName);
+        }else{
+            headContainer.add(fullName);
+        }
         
         Container line = new Container();
         line.setLayout(new BoxLayout(BoxLayout.X_AXIS));

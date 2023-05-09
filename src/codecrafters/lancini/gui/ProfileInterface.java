@@ -13,14 +13,17 @@ import com.codename1.ui.Form;
 import com.codename1.components.ScaleImageLabel;
 import com.codename1.ui.Button;
 import com.codename1.ui.CheckBox;
+import com.codename1.ui.Command;
 import com.codename1.ui.Component;
 import com.codename1.ui.Container;
 import com.codename1.ui.Display;
 import com.codename1.ui.EncodedImage;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Image;
 import com.codename1.ui.Label;
 import com.codename1.ui.TextField;
 import com.codename1.ui.Toolbar;
+import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.geom.Dimension;
 import com.codename1.ui.layouts.BorderLayout;
 import com.codename1.ui.layouts.BoxLayout;
@@ -30,6 +33,7 @@ import com.codename1.ui.layouts.LayeredLayout;
 import com.codename1.ui.plaf.Border;
 import com.codename1.ui.plaf.RoundBorder;
 import com.codename1.ui.plaf.Style;
+import com.codename1.ui.plaf.UIManager;
 import com.codename1.ui.util.Resources;
 import com.codename1.util.Base64;
 import javafx.scene.control.Separator;
@@ -43,6 +47,15 @@ public class ProfileInterface extends Form {
     private User currentUser = Session.getCurrentUser();
 
     public ProfileInterface() {
+        Toolbar tb = new Toolbar();
+        setToolbar(tb);
+        Command returnCommand = new Command("") {
+            public void actionPerformed(ActionEvent evt) {
+                new HomeInterface().showHomeInterface();
+            }
+        };
+        returnCommand.setIcon(FontImage.createMaterial(FontImage.MATERIAL_ARROW_BACK_IOS, UIManager.getInstance().getComponentStyle("TitleCommand")));
+        tb.addCommandToLeftBar(returnCommand);
         setTitle("Profile");
         Label fullName = new Label(currentUser.getNom() + " " + currentUser.getPrenom());
         Label emailLabel = new Label("Email :");
@@ -57,24 +70,33 @@ public class ProfileInterface extends Form {
         Button editProfile = new Button("Edit profile");
         String editPhoneString = currentUser.getNumTel() == null || currentUser.getNumTel().isEmpty() ? "Add phone number" : "Edit phone number";
         Button editPhoneNumber = new Button(editPhoneString);
-        byte[] imageData = Base64.decode(currentUser.getPhotoPath().getBytes());
-        Image image = EncodedImage.createImage(imageData, 0, imageData.length);
-        //Get screen width and set the image size
+        Button logoutButton = new Button("Log out");
         int screenWidth = Display.getInstance().getDisplayWidth();
         int imageSize = (int) (screenWidth * 0.35);
-        image = image.scaled(imageSize, imageSize);
-        ImageViewer imageViewer = new ImageViewer(image);
-        //styles
-        imageViewer.getAllStyles().setMargin(Component.TOP, 20);
-        imageViewer.getAllStyles().setMargin(Component.BOTTOM, 10);
-        imageViewer.getAllStyles().setAlignment(Component.CENTER);
+        
         fullName.getAllStyles().setMargin(Component.TOP, 10);
         fullName.setUIID("CenterLabel");
         email.setUIID("CenterLabel");
         phone.setUIID("CenterLabel");
         bio.setUIID("CenterLabel");
         Container headContainer = new Container(new BoxLayout(BoxLayout.Y_AXIS));
-        headContainer.addAll(imageViewer,fullName);
+        if(currentUser.getPhotoPath() != null && currentUser.getPhotoPath().length() > 0){
+            byte[] imageData = Base64.decode(currentUser.getPhotoPath().getBytes());
+            Image image = EncodedImage.createImage(imageData, 0, imageData.length);
+            //Get screen width and set the image size
+
+            image = image.scaled(imageSize, imageSize);
+            ImageViewer imageViewer = new ImageViewer(image);
+            //styles
+            imageViewer.getAllStyles().setMargin(Component.TOP, 20);
+            imageViewer.getAllStyles().setMargin(Component.BOTTOM, 10);
+            imageViewer.getAllStyles().setAlignment(Component.CENTER);
+            
+            headContainer.addAll(imageViewer, fullName);
+        }else{
+            headContainer.add(fullName);
+        }
+        
         
         Container line = new Container();
         line.setLayout(new BoxLayout(BoxLayout.X_AXIS));
@@ -91,8 +113,14 @@ public class ProfileInterface extends Form {
                 bioLabel,
                 bio,
                 editProfile,
-                editPhoneNumber
+                editPhoneNumber,
+                logoutButton
         );
+        logoutButton.addActionListener(e->{
+            Session.setCurrentUser(null);
+            Session.setToken(null);
+            new StartUpInterface().show();
+        });
         editProfile.addActionListener(e -> {
             new EditProfileInterface().show();
             //String SMS = SMSService.sendVerificationSMS("+21654801411");

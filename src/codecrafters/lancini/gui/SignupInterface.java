@@ -50,9 +50,7 @@ public class SignupInterface extends Form {
         TextField nom = new TextField("", "Last Name", 20, TextField.ANY);
         String[] choices = {"Simple User", "Employeur", "Candidat"};
         ComboBox<String> role = new ComboBox<>(choices);
-        role.getAllStyles().setMarginTop(90);
-        role.getAllStyles().setPaddingTop(15);
-        role.getAllStyles().setPaddingBottom(15);
+        role.getAllStyles().setMarginTop(5);
         Button signUp = new Button("Sign Up");
         Button signIn = new Button("Sign In");
         signIn.setUIID("navigationButton");
@@ -67,7 +65,8 @@ public class SignupInterface extends Form {
             String response = UserService.getInstance().Register(user);
             if (response == "Account created successfully") {
                 Dialog.show("Confirm", response, "OK", null);
-                new ProfileInterface().show();
+                //new ProfileInterface().show();
+                new HomeInterface().showHomeInterface();
             } else {
                 Dialog.show("Error", response, "OK", null);
             }

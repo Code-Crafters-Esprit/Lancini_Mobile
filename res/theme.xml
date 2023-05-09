@@ -1,6 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <resource majorVersion="1" minorVersion="11" useXmlUI="false">
+    <image name="64322a5b1c0ef.jpg"  />
+    <image name="64322b9800949.jpg"  />
+    <image name="64322d4e023a5.jpg"  />
+    <image name="64322d54800d4.jpg"  />
+    <image name="64322dd71bc4a.jpg"  />
+    <image name="64322de1df35d.jpg"  />
+    <image name="64322e4ac6623.jpg"  />
+    <image name="64322e4d981aa.jpg"  />
+    <image name="64322ea21ea89.png"  />
+    <image name="64322edf0f10f.jpg"  />
+    <image name="64323497939b4.jpg"  />
+    <image name="643234e0929e1.jpg"  />
+    <image name="643234f3265e9.jpg"  />
+    <image name="6432350e32693.jpg"  />
+    <image name="64323704c97e6.jpg"  />
+    <image name="64323772ba241.jpg"  />
+    <image name="64323a007adbe.jpg"  />
+    <image name="64323ae0cdd5d.jpg"  />
+    <image name="64323b6f9bc98.png"  />
+    <image name="64323baad2487.png"  />
+    <image name="64323bb4bb746.jpg"  />
+    <image name="64323c14cfc6e.jpg"  />
+    <image name="64323c25e57ff.jpg"  />
+    <image name="64323c2e2f4b3.jpg"  />
+    <image name="64323c7b352b1.png"  />
+    <image name="64323cc632dbe.png"  />
+    <image name="64323de2bb102.jpg"  />
+    <image name="64323dfc6513c.jpg"  />
+    <image name="64323e59c981a.png"  />
+    <image name="64323e6f266fc.png"  />
+    <image name="64324024130f9.jpg"  />
+    <image name="6432405f7d68c.jpg"  />
+    <image name="643240a16d73b.jpg"  />
+    <image name="643240b6cce96.jpg"  />
+    <image name="6434962529b55.jpg"  />
+    <image name="64349d4551e4f.png"  />
+    <image name="6434d70c1e002.jpg"  />
+    <image name="6434da1994da8.jpg"  />
+    <image name="6434da4f0434a.png"  />
+    <image name="6434da655f41f.png"  />
+    <image name="6434da8e0b08c.jpg"  />
+    <image name="6434da9aedff0.jpg"  />
+    <image name="6434dbbeba490.jpg"  />
+    <image name="6434e37e29019.jpg"  />
+    <image name="6434e66707aae.jpg"  />
+    <image name="6436167c71c8e.jpg"  />
+    <image name="643616a6b106b.jpg"  />
+    <image name="643617159efd7.jpg"  />
+    <image name="64361e6ceb440.jpg"  />
+    <image name="64361ec33de68.jpg"  />
+    <image name="64361eec16794.jpg"  />
+    <image name="6436345ea1426.jpg"  />
+    <image name="6436346e3eb82.jpg"  />
+    <image name="643645d158fba.jpg"  />
+    <image name="643666dd91af7.jpg"  />
+    <image name="64366a4593041.jpg"  />
+    <image name="643f56646187f.jpg"  />
+    <image name="643f5c99edebe.jpg"  />
+    <image name="643f5e043dff2.jpg"  />
+    <image name="643f61ac7deaa.jpg"  />
+    <image name="643f62872e210.jpg"  />
+    <image name="643f66913d9e5.jpg"  />
+    <image name="643f68112dd0e.jpg"  />
+    <image name="643fa85453204.png"  />
+    <image name="6441536140d77.png"  />
+    <image name="644153dcc7557.jpg"  />
+    <image name="64415401d8723.jpg"  />
+    <image name="6441542a76410.jpg"  />
+    <image name="6441c7435d4fc.jpg"  />
+    <image name="644568234d39c.jpg"  />
+    <image name="6445bacdd683a.jpg"  />
+    <image name="644645129121a.png"  />
+    <image name="64482a5e0794a.jpg"  />
+    <image name="64482a88aa438.jpg"  />
+    <image name="64482ac9849f2.jpg"  />
+    <image name="64482b1201c09.jpg"  />
+    <image name="64482b1f997b1.jpg"  />
+    <image name="6448335c7c3d7.jpg"  />
+    <image name="644834294fe4f.jpg"  />
+    <image name="6448349ef421e.jpg"  />
+    <image name="64483547e25b1.jpg"  />
+    <image name="644835e4a5909.png"  />
+    <image name="64483614b80b6.jpg"  />
+    <image name="6448f5d7f0898.jpg"  />
+    <image name="644dde44f3abb.jpg"  />
+    <image name="6457c44655d01.png"  />
+    <image name="6457c457a80ba.png"  />
     <image name="back-command.png" type="multi"  />
     <image name="border.png"  />
     <image name="Button.dis#borderBottom_1.png" type="multi"  />
@@ -43,7 +130,7 @@
     <image name="Dialog.borderTop_1.png" type="multi"  />
     <image name="Dialog.borderTopL_1.png" type="multi"  />
     <image name="Dialog.borderTopR_1.png" type="multi"  />
-    <ui name="GUI 1" />
+    <image name="img.jpg"  />
     <image name="Menu.borderBottom_2.png" type="multi"  />
     <image name="Menu.borderBottomL_2.png" type="multi"  />
     <image name="Menu.borderBottomR_2.png" type="multi"  />
@@ -53,7 +140,6 @@
     <image name="Menu.borderTop_2.png" type="multi"  />
     <image name="Menu.borderTopL_2.png" type="multi"  />
     <image name="Menu.borderTopR_2.png" type="multi"  />
-    <image name="Num&#xe9;rix-removebg-preview.png"  />
     <image name="OKGR.borderBottom_1.png" type="multi"  />
     <image name="OKGR.borderBottomL_1.png" type="multi"  />
     <image name="OKGR.borderBottomR_1.png" type="multi"  />
@@ -214,6 +300,8 @@
         <val key="CalendarTitleArea.fgColor" value="ffffff" />
         <val key="CalendarTitleArea.margin" value="0.0,0.0,0.0,0.0" />
         <val key="CalendarTitleArea.transparency" value="255" />
+        <val key="CenterLabel.align" value="4" />
+        <val key="CenterLabel.padding" value="1.0,1.0,1.0,1.0" />
         <val key="CheckBox.align" value="4" />
         <gradient key="CheckBox.bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
         <val key="CheckBox.bgType" value="0" />
@@ -624,6 +712,9 @@
         <val key="SideNavigationPanel.margin" value="0.0,0.0,0.0,0.0" />
         <val key="SideNavigationPanel.padding" value="0.0,0.0,0.0,0.0" />
         <val key="SideNavigationPanel.transparency" value="255" />
+        <val key="SignInForm.bgColor" value="ffffff" />
+        <val key="SignInForm.padding" value="2.0,2.0,3.0,3.0" />
+        <val key="SignInForm.transparency" value="255" />
         <gradient key="Slider.bgGradient" color1="0" color2="0" posX="0.5" posY="0.5" radius="1.0" />
         <val key="Slider.bgType" value="0" />
         <border key="Slider.border" type="imageH" i1="sliderEmptyLeft.png" i2="sliderEmptyRight.png" i3="sliderEmpty.png" />
@@ -800,7 +891,22 @@
         <border key="border" type="empty" />
         <val key="fgColor" value="0" />
         <font key="font" type="ttf" face="0" style="0" size="0" name="native:MainRegular" family="native:MainRegular" sizeSettings="3" actualSize="3.0" />
+        <val key="navigationButton.align" value="4" />
+        <val key="navigationButton.fgColor" value="ccff" />
+        <font key="navigationButton.font" type="system" face="0" style="0" size="8" />
+        <val key="navigationButton.press#align" value="4" />
+        <val key="navigationButton.press#fgColor" value="ccff" />
+        <font key="navigationButton.press#font" type="system" face="0" style="0" size="8" />
+        <val key="navigationButton.press#textDecoration" value="1" />
+        <val key="navigationButton.sel#align" value="4" />
+        <val key="navigationButton.sel#fgColor" value="ccff" />
+        <font key="navigationButton.sel#font" type="system" face="0" style="0" size="8" />
+        <val key="navigationButton.sel#textDecoration" value="1" />
+        <val key="navigationButton.textDecoration" value="1" />
         <border key="press#border" type="empty" />
+        <border key="roundedBorderContainer.border" type="roundRect" strokeColor="0" strokeOpacity="255" strokeThickness="1.0" strokeMM="false" shadowSpread="10.0" shadowOpacity="0" shadowX="0.5" shadowY="0.5" shadowBlur="10.0" topOnlyMode="false" bottomOnlyMode="false" cornerRadius="2.0" bezierCorners="false" />
+        <val key="roundedBorderContainer.margin" value="20.0,10.0,10.0,10.0" />
+        <val key="roundedBorderContainer.padding" value="10.0,10.0,15.0,15.0" />
         <border key="sel#border" type="empty" />
         <val key="transparency" value="0" />
     </theme>
@@ -814,91 +920,3 @@
     <image name="TitleArea.borderTopL_2.png" type="multi"  />
     <image name="TitleArea.borderTopR_2.png" type="multi"  />
 </resource>
-
-    <image name="6457c457a80ba.png"  />
-    <image name="6457c44655d01.png"  />
-    <image name="644dde44f3abb.jpg"  />
-    <image name="6448f5d7f0898.jpg"  />
-    <image name="64483614b80b6.jpg"  />
-    <image name="644835e4a5909.png"  />
-    <image name="64483547e25b1.jpg"  />
-    <image name="6448349ef421e.jpg"  />
-    <image name="644834294fe4f.jpg"  />
-    <image name="6448335c7c3d7.jpg"  />
-    <image name="64482b1f997b1.jpg"  />
-    <image name="64482b1201c09.jpg"  />
-    <image name="64482ac9849f2.jpg"  />
-    <image name="64482a88aa438.jpg"  />
-    <image name="64482a5e0794a.jpg"  />
-    <image name="644645129121a.png"  />
-    <image name="6445bacdd683a.jpg"  />
-    <image name="644568234d39c.jpg"  />
-    <image name="6441c7435d4fc.jpg"  />
-    <image name="6441542a76410.jpg"  />
-    <image name="64415401d8723.jpg"  />
-    <image name="644153dcc7557.jpg"  />
-    <image name="6441536140d77.png"  />
-    <image name="643fa85453204.png"  />
-    <image name="643f68112dd0e.jpg"  />
-    <image name="643f66913d9e5.jpg"  />
-    <image name="643f62872e210.jpg"  />
-    <image name="643f61ac7deaa.jpg"  />
-    <image name="643f5e043dff2.jpg"  />
-    <image name="643f5c99edebe.jpg"  />
-    <image name="643f56646187f.jpg"  />
-    <image name="64366a4593041.jpg"  />
-    <image name="643666dd91af7.jpg"  />
-    <image name="643645d158fba.jpg"  />
-    <image name="6436346e3eb82.jpg"  />
-    <image name="6436345ea1426.jpg"  />
-    <image name="64361eec16794.jpg"  />
-    <image name="64361ec33de68.jpg"  />
-    <image name="64361e6ceb440.jpg"  />
-    <image name="643617159efd7.jpg"  />
-    <image name="643616a6b106b.jpg"  />
-    <image name="6436167c71c8e.jpg"  />
-    <image name="6434e66707aae.jpg"  />
-    <image name="6434e37e29019.jpg"  />
-    <image name="6434dbbeba490.jpg"  />
-    <image name="6434da9aedff0.jpg"  />
-    <image name="6434da8e0b08c.jpg"  />
-    <image name="6434da655f41f.png"  />
-    <image name="6434da4f0434a.png"  />
-    <image name="6434d70c1e002.jpg"  />
-    <image name="6434da1994da8.jpg"  />
-    <image name="64349d4551e4f.png"  />
-    <image name="6434962529b55.jpg"  />
-    <image name="643240b6cce96.jpg"  />
-    <image name="643240a16d73b.jpg"  />
-    <image name="6432405f7d68c.jpg"  />
-    <image name="64324024130f9.jpg"  />
-    <image name="64323e6f266fc.png"  />
-    <image name="64323e59c981a.png"  />
-    <image name="64323dfc6513c.jpg"  />
-    <image name="64323de2bb102.jpg"  />
-    <image name="64323cc632dbe.png"  />
-    <image name="64323c7b352b1.png"  />
-    <image name="64323c2e2f4b3.jpg"  />
-    <image name="64323c25e57ff.jpg"  />
-    <image name="64323c14cfc6e.jpg"  />
-    <image name="64323bb4bb746.jpg"  />
-    <image name="64323baad2487.png"  />
-    <image name="64323b6f9bc98.png"  />
-    <image name="64323ae0cdd5d.jpg"  />
-    <image name="64323a007adbe.jpg"  />
-    <image name="64323772ba241.jpg"  />
-    <image name="64323704c97e6.jpg"  />
-    <image name="6432350e32693.jpg"  />
-    <image name="643234f3265e9.jpg"  />
-    <image name="643234e0929e1.jpg"  />
-    <image name="64323497939b4.jpg"  />
-    <image name="64322edf0f10f.jpg"  />
-    <image name="64322ea21ea89.png"  />
-    <image name="64322e4d981aa.jpg"  />
-    <image name="64322e4ac6623.jpg"  />
-    <image name="64322dd71bc4a.jpg"  />
-    <image name="64322de1df35d.jpg"  />
-    <image name="64322d54800d4.jpg"  />
-    <image name="64322d4e023a5.jpg"  />
-    <image name="64322b9800949.jpg"  />
-    <image name="64322a5b1c0ef.jpg"  />
