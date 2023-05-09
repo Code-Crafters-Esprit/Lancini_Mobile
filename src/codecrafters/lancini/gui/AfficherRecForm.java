@@ -32,14 +32,14 @@ public class AfficherRecForm extends Form {
 
     private final ArrayList<Reclamation> reclamations;
 
-    public AfficherRecForm() {
+    public AfficherRecForm(Form previous) {
     super("Liste des réclamations");
 
-    getToolbar().addMaterialCommandToRightBar("", FontImage.MATERIAL_ADD,
-            e -> {
-                new AjoutRecForm(this).show();
-            });
-
+      getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, ev -> {
+            previous.showBack();});
+       
+        
+        
     // Récupérer toutes les réclamations du serveur
     reclamations = ServiceRec.getInstance().getAllReclamations();
 
@@ -112,7 +112,7 @@ public class AfficherRecForm extends Form {
 }
 
      public void showAfficherRec() {
-        AfficherRecForm form = new AfficherRecForm();
+        AfficherRecForm form = new AfficherRecForm(this);
         form.show();
     }
 

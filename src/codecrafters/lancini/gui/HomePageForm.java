@@ -3,6 +3,7 @@ package codecrafters.lancini.gui;
 import codecrafters.lancini.myapp.MyApplication;
 import com.codename1.ui.Button;
 import com.codename1.ui.Command;
+import com.codename1.ui.FontImage;
 import com.codename1.ui.Form;
 import com.codename1.ui.events.ActionEvent;
 import com.codename1.ui.events.ActionListener;
@@ -14,6 +15,8 @@ Form current;
       
         super("Lancini", BoxLayout.y());
   current=this;
+    getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK,
+                ev -> {new HomeInterface().showHomeInterface();} );
         Button btnRec = new Button("Poser une réclamation");
         btnRec.addActionListener(e->new AjoutRecForm(current).show());
         add(btnRec);
@@ -24,7 +27,7 @@ Form current;
         //add(btnAvi);
 
         Button btnAfficherRec = new Button("Afficher Réclamation");
-        btnAfficherRec.addActionListener(e->new AfficherRecForm().show());
+        btnAfficherRec.addActionListener(e->new AfficherRecForm(this).show());
           
         add(btnAfficherRec);
 

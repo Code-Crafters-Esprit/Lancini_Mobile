@@ -86,7 +86,7 @@ public class AjoutRecForm extends Form {
                 reclamation.setEtat(etat);
 
                 ServiceRec.getInstance().addReclamation(reclamation);
- new AfficherRecForm().show();
+ new AfficherRecForm(this).show();
                 // Show a confirmation message and return to the home page
                 Dialog.show("Confirmation", "Bonjour, votre réclamation a été déposée sur LANCINI.", "OK", null);
                
