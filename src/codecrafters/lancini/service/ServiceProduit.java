@@ -6,7 +6,7 @@
 package codecrafters.lancini.service;
 
 import codecrafters.lancini.entities.Produit;
-import codecrafters.lancini.entities.User;
+import codecrafters.lancini.gui.User;
 import codecrafters.lancini.tools.MaConnection;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;

@@ -1,4 +1,4 @@
-package codecrafters.lancini.myapp;
+package codecrafters.lancini.gui;
 
 import codecrafters.lancini.entities.Produit;
 import codecrafters.lancini.service.ServiceProduit;

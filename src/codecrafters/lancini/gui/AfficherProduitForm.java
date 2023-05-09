@@ -1,4 +1,4 @@
-package codecrafters.lancini.myapp;
+package codecrafters.lancini.gui;
 
 import codecrafters.lancini.entities.Produit;
 import codecrafters.lancini.service.ServiceProduit;
@@ -31,8 +31,8 @@ public class AfficherProduitForm extends Form {
         setTitle("List Products");
         setLayout(BoxLayout.y());
  getToolbar().addMaterialCommandToLeftBar("", FontImage.MATERIAL_ARROW_BACK, e -> {
-            // Show the HomeForm
-            HomeForm homeForm = new HomeForm();
+            // Show the HomeFormMarket
+            HomeFormMarket homeForm = new HomeFormMarket();
             homeForm.show();
         });
         // Set the cover image

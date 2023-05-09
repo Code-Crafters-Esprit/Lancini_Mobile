@@ -1,4 +1,4 @@
-package codecrafters.lancini.entities;
+package codecrafters.lancini.gui;
 
 /**
  *

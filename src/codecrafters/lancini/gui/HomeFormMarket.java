@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package codecrafters.lancini.myapp;
+package codecrafters.lancini.gui;
 
-import codecrafters.lancini.entities.User;
+import codecrafters.lancini.gui.User;
 import codecrafters.lancini.service.NewsArticle;
 import codecrafters.lancini.service.NewsService;
 import com.codename1.components.ImageViewer;
@@ -26,9 +26,9 @@ import com.codename1.ui.plaf.Border;
 import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
-public class HomeForm extends Form {
+public class HomeFormMarket extends Form {
 
-  public HomeForm() {
+  public HomeFormMarket() {
     setTitle("Home");
     setLayout(BoxLayout.y());
 
