@@ -8,6 +8,7 @@ package codecrafters.lancini.service;
 import codecrafters.lancini.entities.Produit;
 import codecrafters.lancini.entities.User;
 import codecrafters.lancini.tools.MaConnection;
+import codecrafters.lancini.tools.Session;
 import com.codename1.io.CharArrayReader;
 import com.codename1.io.ConnectionRequest;
 import com.codename1.io.JSONParser;
@@ -101,8 +102,8 @@ public class ServiceProduit {
                         // Vendeur
                         Map<String, Object> vendeurMap = (Map<String, Object>) obj.get("vendeur");
                         User vendeur = new User();
-                        float vendeurid =Float.parseFloat(vendeurMap.get("idUser").toString());
-                        vendeur.setIdUser((int)vendeurid);
+                        float vendeurid = Float.parseFloat(vendeurMap.get("idUser").toString());
+                        vendeur.setIdUser((int) vendeurid);
                         vendeur.setNom(vendeurMap.get("nom").toString());
                         vendeur.setPrenom(vendeurMap.get("prenom").toString());
                         vendeur.setEmail(vendeurMap.get("email").toString());
@@ -126,42 +127,77 @@ public class ServiceProduit {
 
     }
 
-  public Produit DetailProduit(int idProduit, Produit p) {
-    String url = MaConnection.BASE_URL + "/produit/Produits?" + idProduit;
-    req.setUrl(url);
+    public boolean Commander(int idProduit) {
+        boolean success=true;
+        String url = MaConnection.BASE_URL + "/produit/Buy";
+        req.setUrl(url);
+        req.setPost(true);
+        req.setContentType("application/json");
 
-    req.addResponseListener(((evt) -> {
-        String str = new String(req.getResponseData());
-        if (str != null) {
-            JSONParser jsonp = new JSONParser();
-            try {
-                Map<String, Object> obj = jsonp.parseJSON(new CharArrayReader(str.toCharArray()));
+        int idUser = Session.getCurrentUser().getIdUser();
 
-                p.setCategorie(obj.get("categorie").toString());
-                p.setNom(obj.get("nom").toString());
-                p.setDescription(obj.get("description").toString());
-                p.setImage(obj.get("image").toString());
-                p.setPrix(Float.parseFloat(obj.get("prix").toString()));
+        // Create the request data as a string
+        String requestData = "{\"idProduit\": " + idProduit + ", \"idUser\": " + idUser + "}";
 
-                // Vendeur
-                Map<String, Object> vendeurMap = (Map<String, Object>) obj.get("vendeur");
-                User vendeur = new User();
-                vendeur.setIdUser(Integer.parseInt(vendeurMap.get("idUser").toString()));
-                vendeur.setNom(vendeurMap.get("nom").toString());
-                vendeur.setPrenom(vendeurMap.get("prenom").toString());
-                vendeur.setEmail(vendeurMap.get("email").toString());
-                p.setVendeur(vendeur);
+        // Set the request body with the JSON data
+        req.setRequestBody(requestData);
 
-            } catch (IOException ex) {
-                System.out.println("error related to sql 🙁 " + ex.getMessage());
+        // Set up the response listener
+        req.addResponseListener(e -> {
+            NetworkEvent event = (NetworkEvent) e;
+            byte[] responseData = event.getConnectionRequest().getResponseData();
+            int responseCode = event.getConnectionRequest().getResponseCode();
+
+            if (responseCode == 200) {
+                // Handle the successful response
+                resultOK=true;
+                // Process the response data as needed
+            } else {
+                // Handle the error response
+                // Display an error message or perform error handling
+                resultOK=false;
             }
-            System.out.println("data === " + str);
-        }
-    }));
+        });
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return resultOK;
+    }
 
-    NetworkManager.getInstance().addToQueueAndWait(req);
-    return p;
-}
+    public Produit DetailProduit(int idProduit, Produit p) {
+        String url = MaConnection.BASE_URL + "/produit/Produits?" + idProduit;
+        req.setUrl(url);
+
+        req.addResponseListener(((evt) -> {
+            String str = new String(req.getResponseData());
+            if (str != null) {
+                JSONParser jsonp = new JSONParser();
+                try {
+                    Map<String, Object> obj = jsonp.parseJSON(new CharArrayReader(str.toCharArray()));
+
+                    p.setCategorie(obj.get("categorie").toString());
+                    p.setNom(obj.get("nom").toString());
+                    p.setDescription(obj.get("description").toString());
+                    p.setImage(obj.get("image").toString());
+                    p.setPrix(Float.parseFloat(obj.get("prix").toString()));
+
+                    // Vendeur
+                    Map<String, Object> vendeurMap = (Map<String, Object>) obj.get("vendeur");
+                    User vendeur = new User();
+                    vendeur.setIdUser(Integer.parseInt(vendeurMap.get("idUser").toString()));
+                    vendeur.setNom(vendeurMap.get("nom").toString());
+                    vendeur.setPrenom(vendeurMap.get("prenom").toString());
+                    vendeur.setEmail(vendeurMap.get("email").toString());
+                    p.setVendeur(vendeur);
+
+                } catch (IOException ex) {
+                    System.out.println("error related to sql 🙁 " + ex.getMessage());
+                }
+                System.out.println("data === " + str);
+            }
+        }));
+
+        NetworkManager.getInstance().addToQueueAndWait(req);
+        return p;
+    }
 
     public boolean addProduit(Produit p) {
 
